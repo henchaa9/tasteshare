@@ -18,6 +18,10 @@ class RecepteController extends Controller
         return view('manasreceptes', ['receptes' => Recipes::all()]);
     }
 
+    public function upvote()
+    {
+    }
+
     public function saglabatRecepti(Request $request)
     {
         $newRecipe = new Recipes;
