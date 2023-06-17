@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('recipeid');
             $table->foreign('recipeid')->references('id')->on('recipes')->onDelete('cascade');
-            $table->string('imageurl');
+            $table->longText('imageurl');
             $table->timestamps();
         });
     }

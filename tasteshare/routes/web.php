@@ -20,6 +20,8 @@ Route::get('/jaunarecepte', function () {
     return view('jaunarecepte');
 });
 
+Route::get('/manasreceptes', [RecepteController::class, 'manasreceptes']);
+
 Route::get('/ielogoties', function () {
     return view('ielogoties');
 });

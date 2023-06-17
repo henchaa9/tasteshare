@@ -36,7 +36,7 @@
             <input class="mb-4 p-1 d-block w-50" type="text" name="foto" id="">
 
             <button type="submit" class="btn btn-primary d-inline mb-3">Pievienot</button>
-            <button type="button" class="btn btn-danger d-inline mb-3">Dzēst</button>
+            <button type="reset" class="btn btn-danger d-inline mb-3">Dzēst</button>
         </form>
     </div>
     
