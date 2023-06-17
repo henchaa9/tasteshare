@@ -27,6 +27,6 @@ class RecepteController extends Controller
         $newRecipe->save();
 
 
-        return view('welcome');
+        return redirect('');
     }
 }

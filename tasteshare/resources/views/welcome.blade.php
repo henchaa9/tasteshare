@@ -45,21 +45,37 @@ use App\Models\Users
     </div> 
     <div class="container">
         <div class="row">
-            <div class="col" style="width: 600px">
-                @foreach ($receptes as $recepte)
-                    <div class="card m-2">
-                        <img src="{{ $recepte->foto }}" class="card-img-top" alt="..." style="height: 300px">
-                        <div class="card-body">
-                            <h4 class="card-title mb-1">{{ $recepte->title }}</h5>
-                            <h5 class="card-title">{{ Users::find($recepte->userid)->name }}</h5>
-                            <p class="card-text">{{ $recepte->desc }}</p>
-                            <button type="button" class="d-inline btn btn-outline-danger">Patīk</button>
-                            <button type="button" class="d-inline btn btn-outline-danger ml-1">Saglabāt</button> 
+            <div class="col" style="max-width: 500px">
+                @foreach ($receptes as $recepte )
+                    @if ($recepte->id % 2 == 0)
+                        <div class="card m-2">
+                            <img src="{{ $recepte->foto }}" class="card-img-top" alt="..." style="height: 300px">
+                            <div class="card-body">
+                                <h4 class="card-title mb-1">{{ $recepte->title }}</h5>
+                                <h5 class="card-title">{{ Users::find($recepte->userid)->name }}</h5>
+                                <p class="card-text" style="max-height: 300px; overflow: hidden">{{ $recepte->desc }}</p>
+                                <button type="button" class="d-inline btn btn-outline-danger">Patīk</button>
+                                <button type="button" class="d-inline btn btn-outline-danger ml-1">Saglabāt</button> 
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 @endforeach
             </div>
-            <div class="col" style="width: 600px">
+            <div class="col" style="max-width: 500px">
+                @foreach ($receptes as $recepte)
+                    @if ($recepte->id % 2 == 1)
+                        <div class="card m-2">
+                            <img src="{{ $recepte->foto }}" class="card-img-top" alt="..." style="height: 300px">
+                            <div class="card-body">
+                                <h4 class="card-title mb-1">{{ $recepte->title }}</h5>
+                                <h5 class="card-title">{{ Users::find($recepte->userid)->name }}</h5>
+                                <p class="card-text" style="max-height: 300px; overflow: hidden">{{ $recepte->desc }}</p>
+                                <button type="button" class="d-inline btn btn-outline-danger">Patīk</button>
+                                <button type="button" class="d-inline btn btn-outline-danger ml-1">Saglabāt</button> 
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
             </div>
         </div>
     </div>
