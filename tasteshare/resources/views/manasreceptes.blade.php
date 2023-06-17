@@ -21,6 +21,7 @@ use App\Models\RecipeImages;
                 @foreach ($receptes as $recepte )
                     @if ($recepte->id % 2 == 0 and $recepte->userid == Auth::id())
                         <div class="card m-2">
+<<<<<<< HEAD
                             @php
                                 $recipeImage = RecipeImages::join('Recipes', 'recipe_images.recipeid', '=', 'recipes.id')
                                     ->where('recipes.id', $recepte->id)
@@ -30,6 +31,9 @@ use App\Models\RecipeImages;
                             @if ($recipeImage)
                                 <img src="{{ $recipeImage->imageurl }}" class="card-img-top" alt="..." style="height: 300px">
                             @endif
+=======
+                            <img src="{{ RecipeImages::find($recepte->id)->imageurl}}"  class="card-img-top" alt="..." style="height: 300px">
+>>>>>>> 60245c2 (fotkas strada)
                             <div class="card-body">
                                 <h4 class="card-title mb-1">{{ $recepte->title }}</h5>
                                 <h5 class="card-title">{{ Users::find($recepte->userid)->name }}</h5>
@@ -45,6 +49,7 @@ use App\Models\RecipeImages;
                 @foreach ($receptes as $recepte)
                     @if ($recepte->id % 2 == 1 and $recepte->userid == Auth::id())
                         <div class="card m-2">
+<<<<<<< HEAD
                             @php
                                 $recipeImage = RecipeImages::join('Recipes', 'recipe_images.recipeid', '=', 'recipes.id')
                                     ->where('recipes.id', $recepte->id)
@@ -54,6 +59,9 @@ use App\Models\RecipeImages;
                             @if ($recipeImage)
                                 <img src="{{ $recipeImage->imageurl }}" class="card-img-top" alt="..." style="height: 300px">
                             @endif
+=======
+                            <img src="{{ RecipeImages::find($recepte->id)->imageurl}}" class="card-img-top" alt="..." style="height: 300px">
+>>>>>>> 60245c2 (fotkas strada)
                             <div class="card-body">
                                 <h4 class="card-title mb-1">{{ $recepte->title }}</h5>
                                 <h5 class="card-title">{{ Users::find($recepte->userid)->name }}</h5>
