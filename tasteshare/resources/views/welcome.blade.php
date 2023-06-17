@@ -1,5 +1,6 @@
 <?php
-use App\Models\Users
+use App\Models\Users;
+use App\Models\RecipeImages;
 ?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -47,13 +48,13 @@ use App\Models\Users
         <div class="row">
             <div class="col" style="max-width: 500px">
                 @foreach ($receptes as $recepte )
-                    @if ($recepte->id % 2 == 0)
+                    @if ($recepte->id % 2 == 0 and $recepte->ispublic == true)
                         <div class="card m-2">
-                            <img src="{{ $recepte->foto }}" class="card-img-top" alt="..." style="height: 300px">
+                            <img src="{{ RecipeImages::find($recepte->id)->imageurl}}"  class="card-img-top" alt="..." style="height: 300px">
                             <div class="card-body">
                                 <h4 class="card-title mb-1">{{ $recepte->title }}</h5>
                                 <h5 class="card-title">{{ Users::find($recepte->userid)->name }}</h5>
-                                <p class="card-text" style="max-height: 300px; overflow: hidden">{{ $recepte->desc }}</p>
+                                <p class="card-text" style="max-height: 200px; overflow: hidden">{{ $recepte->desc }}</p>
                                 <button type="button" class="d-inline btn btn-outline-danger">Patīk</button>
                                 <button type="button" class="d-inline btn btn-outline-danger ml-1">Saglabāt</button> 
                             </div>
@@ -63,13 +64,13 @@ use App\Models\Users
             </div>
             <div class="col" style="max-width: 500px">
                 @foreach ($receptes as $recepte)
-                    @if ($recepte->id % 2 == 1)
+                    @if ($recepte->id % 2 == 1 and $recepte->ispublic == true)
                         <div class="card m-2">
-                            <img src="{{ $recepte->foto }}" class="card-img-top" alt="..." style="height: 300px">
+                            <img src="{{ RecipeImages::find($recepte->id)->imageurl}}" class="card-img-top" alt="..." style="height: 300px">
                             <div class="card-body">
                                 <h4 class="card-title mb-1">{{ $recepte->title }}</h5>
                                 <h5 class="card-title">{{ Users::find($recepte->userid)->name }}</h5>
-                                <p class="card-text" style="max-height: 300px; overflow: hidden">{{ $recepte->desc }}</p>
+                                <p class="card-text" style="max-height: 200px; overflow: hidden">{{ $recepte->desc }}</p>
                                 <button type="button" class="d-inline btn btn-outline-danger">Patīk</button>
                                 <button type="button" class="d-inline btn btn-outline-danger ml-1">Saglabāt</button> 
                             </div>

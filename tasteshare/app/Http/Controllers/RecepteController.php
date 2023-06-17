@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Recipes;
+use App\Models\RecipeImages;
 
 class RecepteController extends Controller
 {
@@ -25,6 +26,11 @@ class RecepteController extends Controller
         $newRecipe->ispublic = 0;
         $newRecipe->userid = $request->user()->id;
         $newRecipe->save();
+
+        $newPhoto = new RecipeImages;
+        $newPhoto->recipeid = $newRecipe->id;
+        $newPhoto->imageurl = $request->foto;
+        $newPhoto->save();
 
 
         return redirect('');
