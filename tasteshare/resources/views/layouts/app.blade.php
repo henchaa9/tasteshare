@@ -36,7 +36,7 @@
                     <ul class="navbar-nav me-auto">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="">Manas receptes <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="manasreceptes">Manas receptes <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="">Mīļākās receptes <span class="sr-only">(current)</span></a>

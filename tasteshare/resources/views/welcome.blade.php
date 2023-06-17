@@ -1,9 +1,6 @@
 @extends('layouts.app')
 
-
-
 @section('content')
-
 <?php
 use App\Models\Users;
 use App\Models\RecipeImages;
@@ -18,32 +15,7 @@ use App\Models\RecipeImages;
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     </head>
     <body class="antialiased">
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="">Sākums <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                    Receptes
-                    </a>
-                    <div class="dropdown-menu">
-                    <a class="dropdown-item" href="jaunarecepte">Jauna recepte</a>
-                    <a class="dropdown-item" href="#">Manas receptes</a>
-                    <a class="dropdown-item" href="#">Mīļākas receptes</a>
-                    </div>
-                </li>
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Pelmeņu zupa..." aria-label="Search">
-                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Meklēt</button>
-                </form>
-                <a class="btn btn-light ml-4 my-sm-0" type="button" href="login">Ielogoties</a>
-                <a class="btn btn-light ml-2 my-sm-0" type="button" href="register">Reģistrēties</a>
-            </div>
-        </nav> 
-    </div> 
+ 
     <div class="container">
         <div class="row">
             <div class="col" style="max-width: 500px">
