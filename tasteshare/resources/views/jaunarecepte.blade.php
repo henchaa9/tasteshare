@@ -41,7 +41,8 @@
         </nav> 
     </div> 
     <div class="container">
-        <form method="post">
+        <form method="post" action="{{ route('saglabatRecepti') }}">
+            {{ csrf_field() }}
             <label class="d-block mt-3 font-weight-bolder" for="nosaukums" style="font-size:1.1rem">Nosaukums</label>
             <input class="mb-4 w-50 p-1" type="text" name="nosaukums" id="">
             
@@ -54,8 +55,8 @@
             <label class="d-block font-weight-bolder" for="pagatavosanasLaiks" style="font-size:1.1rem">Pagatavošanas laiks (min)</label>
             <input class="mb-4 p-1" type="number" name="pagatavosanasLaiks" id="">
 
-            <label class="d-block font-weight-bolder" for="apraksts" style="font-size:1.1rem">Porciju skaits</label>
-            <input class="mb-4 p-1" type="number" name="apraksts" id="">
+            <label class="d-block font-weight-bolder" for="porcijas" style="font-size:1.1rem">Porciju skaits</label>
+            <input class="mb-4 p-1" type="number" name="porcijas" id="">
 
             <label class="d-block font-weight-bolder" for="pagatavosana" style="font-size:1.1rem">Pagatavošana</label>
             <textarea class="mb-4 p-1 w-50 d-block" name="pagatavosana" id="" cols="20" rows="10"></textarea>
