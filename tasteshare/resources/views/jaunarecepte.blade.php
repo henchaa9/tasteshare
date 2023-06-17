@@ -44,25 +44,25 @@
         <form method="post" action="{{ route('saglabatRecepti') }}">
             {{ csrf_field() }}
             <label class="d-block mt-3 font-weight-bolder" for="nosaukums" style="font-size:1.1rem">Nosaukums</label>
-            <input class="mb-4 w-50 p-1" type="text" name="nosaukums" id="">
+            <input class="mb-4 w-50 p-1" type="text" name="nosaukums" id="" required>
             
             <label class="d-block font-weight-bolder" for="apraksts" style="font-size:1.1rem">Apraksts</label>
-            <textarea class="mb-4 p-1 w-50" name="apraksts" id="" cols="20" rows="10"></textarea>
+            <textarea class="mb-4 p-1 w-50" name="apraksts" id="" cols="20" rows="10" required></textarea>
 
             <label class="d-block font-weight-bolder" for="sagatavosanasLaiks" style="font-size:1.1rem">Sagatavošanās laiks (min)</label>
-            <input class="mb-4 p-1" type="number" name="sagatavosanasLaiks" id="">
+            <input class="mb-4 p-1" type="number" name="sagatavosanasLaiks" id="" required>
 
             <label class="d-block font-weight-bolder" for="pagatavosanasLaiks" style="font-size:1.1rem">Pagatavošanas laiks (min)</label>
-            <input class="mb-4 p-1" type="number" name="pagatavosanasLaiks" id="">
+            <input class="mb-4 p-1" type="number" name="pagatavosanasLaiks" id="" required>
 
             <label class="d-block font-weight-bolder" for="porcijas" style="font-size:1.1rem">Porciju skaits</label>
-            <input class="mb-4 p-1" type="number" name="porcijas" id="">
+            <input class="mb-4 p-1" type="number" name="porcijas" id="" required>
 
             <label class="d-block font-weight-bolder" for="pagatavosana" style="font-size:1.1rem">Pagatavošana</label>
-            <textarea class="mb-4 p-1 w-50 d-block" name="pagatavosana" id="" cols="20" rows="10"></textarea>
+            <textarea class="mb-4 p-1 w-50 d-block" name="pagatavosana" id="" cols="20" rows="10" required></textarea>
 
             <label class="d-block font-weight-bolder" for="foto" style="font-size:1.1rem">Saite uz attēlu</label>
-            <input class="mb-4 p-1 d-block w-50" type="text" name="foto" id="">
+            <input class="mb-4 p-1 d-block w-50" type="url" name="foto" id="">
 
             <button type="submit" class="btn btn-primary d-inline mb-3">Pievienot</button>
             <button type="reset" class="btn btn-danger d-inline mb-3">Dzēst</button>

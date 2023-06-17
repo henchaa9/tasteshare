@@ -1,6 +1,7 @@
 <?php
 use App\Models\Users;
 use App\Models\RecipeImages;
+use App\Models\Recipes;
 ?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -62,8 +63,14 @@ use App\Models\RecipeImages;
                 @foreach ($receptes as $recepte )
                     @if ($recepte->id % 2 == 0 and $recepte->ispublic == true)
                         <div class="card m-2">
-                            @if (RecipeImages::find($recepte->id)->imageurl)
-                                <img src="{{ RecipeImages::find($recepte->id)->imageurl}}"  class="card-img-top" alt="..." style="height: 300px">
+                            @php
+                                $recipeImage = RecipeImages::join('Recipes', 'recipe_images.recipeid', '=', 'recipes.id')
+                                    ->where('recipes.id', $recepte->id)
+                                    ->select('recipe_images.imageurl')
+                                    ->first();
+                            @endphp
+                            @if ($recipeImage)
+                                <img src="{{ $recipeImage->imageurl }}" class="card-img-top" alt="..." style="height: 300px">
                             @endif
                             <div class="card-body">
                                 <h4 class="card-title mb-1">{{ $recepte->title }}</h5>
@@ -86,10 +93,16 @@ use App\Models\RecipeImages;
                 @foreach ($receptes as $recepte)
                     @if ($recepte->id % 2 == 1 and $recepte->ispublic == true)
                         <div class="card m-2">
-                            @if (RecipeImages::find($recepte->id)->imageurl)
-                                <img src="{{ RecipeImages::find($recepte->id)->imageurl}}" class="card-img-top" alt="..." style="height: 300px">
+                            @php
+                                $recipeImage = RecipeImages::join('Recipes', 'recipe_images.recipeid', '=', 'recipes.id')
+                                    ->where('recipes.id', $recepte->id)
+                                    ->select('recipe_images.imageurl')
+                                    ->first();
+                            @endphp
+                            @if ($recipeImage)
+                                <img src="{{ $recipeImage->imageurl }}" class="card-img-top" alt="..." style="height: 300px">
                             @endif
-                            <div class="card-body">
+                                <div class="card-body">
                                 <h4 class="card-title mb-1">{{ $recepte->title }}</h5>
                                 <h5 class="card-title">{{ Users::find($recepte->userid)->name }}</h5>
                                 <p class="card-text" style="max-height: 200px; overflow: hidden">{{ $recepte->desc }}</p>
