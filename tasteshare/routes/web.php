@@ -21,6 +21,14 @@ Route::get('/jaunarecepte', function () {
     return view('jaunarecepte');
 });
 
+Route::get('/ielogoties', function () {
+    return view('ielogoties');
+});
+
+Route::get('/registreties', function () {
+    return view('registreties');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

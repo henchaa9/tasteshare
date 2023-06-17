@@ -7,7 +7,7 @@
         <!-- bootstrap -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     </head>
-    <body>
+    <body class="antialiased">
     <div class="container-fluid sticky-top">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <span class="navbar-brand mb-0 h1">TasteShare</span>
@@ -60,9 +60,15 @@
             <label class="d-block font-weight-bolder" for="pagatavosana" style="font-size:1.1rem">Pagatavošana</label>
             <textarea class="mb-4 p-1 w-50 d-block" name="pagatavosana" id="" cols="20" rows="10"></textarea>
 
+            <label class="d-block font-weight-bolder" for="foto" style="font-size:1.1rem">Attēls</label>
+            <input class="mb-4 p-1 d-block" type="file" name="foto" id="">
+
             <button type="submit" class="btn btn-primary d-inline mb-3">Pievienot</button>
             <button type="button" class="btn btn-danger d-inline mb-3">Dzēst</button>
         </form>
     </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
     </body>
 </html>
