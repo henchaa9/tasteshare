@@ -60,8 +60,8 @@
             <label class="d-block font-weight-bolder" for="pagatavosana" style="font-size:1.1rem">Pagatavošana</label>
             <textarea class="mb-4 p-1 w-50 d-block" name="pagatavosana" id="" cols="20" rows="10"></textarea>
 
-            <label class="d-block font-weight-bolder" for="foto" style="font-size:1.1rem">Attēls</label>
-            <input class="mb-4 p-1 d-block" type="file" name="foto" id="">
+            <label class="d-block font-weight-bolder" for="foto" style="font-size:1.1rem">Saite uz attēlu</label>
+            <input class="mb-4 p-1 d-block w-50" type="text" name="foto" id="">
 
             <button type="submit" class="btn btn-primary d-inline mb-3">Pievienot</button>
             <button type="button" class="btn btn-danger d-inline mb-3">Dzēst</button>

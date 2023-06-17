@@ -35,8 +35,8 @@
                     <input class="form-control mr-sm-2" type="search" placeholder="Pelmeņu zupa..." aria-label="Search">
                     <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Meklēt</button>
                 </form>
-                <a class="btn btn-light ml-4 my-sm-0" type="button" href="ielogoties">Ielogoties</a>
-                <a class="btn btn-light ml-2 my-sm-0" type="button" href="registreties">Reģistrēties</a>
+                <a class="btn btn-light ml-4 my-sm-0" type="button" href="login">Ielogoties</a>
+                <a class="btn btn-light ml-2 my-sm-0" type="button" href="register">Reģistrēties</a>
             </div>
         </nav> 
     </div> 

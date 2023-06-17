@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('recipe_images', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('recipeid');
-            $table->foreign('recipeid')->references('id')->on('recipes')->onDelete('cascade');
-            $table->string('imageurl');
-            $table->timestamps();
+        Schema::create('password_reset_tokens', function (Blueprint $table) {
+            $table->string('email')->primary();
+            $table->string('token');
+            $table->timestamp('created_at')->nullable();
         });
     }
 
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('recipe_images');
+        Schema::dropIfExists('password_reset_tokens');
     }
 };
