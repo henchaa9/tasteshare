@@ -13,6 +13,11 @@ class RecepteController extends Controller
         return view('welcome', ['receptes' => Recipes::all()]);
     }
 
+    public function manasreceptes()
+    {
+        return view('manasreceptes', ['receptes' => Recipes::all()]);
+    }
+
     public function saglabatRecepti(Request $request)
     {
         $newRecipe = new Recipes;

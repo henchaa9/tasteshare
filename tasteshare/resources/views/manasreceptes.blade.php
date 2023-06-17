@@ -37,7 +37,7 @@ use App\Models\RecipeImages;
                     @endif
                     <div class="dropdown-menu">
                     <a class="dropdown-item" href="jaunarecepte">Jauna recepte</a>
-                    <a class="dropdown-item" href="manasreceptes">Manas receptes</a>
+                    <a class="dropdown-item" href="#">Manas receptes</a>
                     <a class="dropdown-item" href="#">Mīļākas receptes</a>
                     </div>
                 </li>
@@ -60,15 +60,15 @@ use App\Models\RecipeImages;
         <div class="row">
             <div class="col" style="max-width: 500px">
                 @foreach ($receptes as $recepte )
-                    @if ($recepte->id % 2 == 0 and $recepte->ispublic == true)
+                    @if ($recepte->id % 2 == 0 and $recepte->userid == Auth::id())
                         <div class="card m-2">
                             <img src="{{ RecipeImages::find($recepte->id)->imageurl}}"  class="card-img-top" alt="..." style="height: 300px">
                             <div class="card-body">
                                 <h4 class="card-title mb-1">{{ $recepte->title }}</h5>
                                 <h5 class="card-title">{{ Users::find($recepte->userid)->name }}</h5>
                                 <p class="card-text" style="max-height: 200px; overflow: hidden">{{ $recepte->desc }}</p>
-                                <button type="button" class="d-inline btn btn-outline-danger">Patīk</button>
-                                <button type="button" class="d-inline btn btn-outline-danger ml-1">Saglabāt</button> 
+                                <button type="button" class="d-inline btn btn-warning">Rediģēt</button>
+                                <button type="button" class="d-inline btn btn-danger ml-1">Dzēst</button> 
                             </div>
                         </div>
                     @endif
@@ -76,15 +76,15 @@ use App\Models\RecipeImages;
             </div>
             <div class="col" style="max-width: 500px">
                 @foreach ($receptes as $recepte)
-                    @if ($recepte->id % 2 == 1 and $recepte->ispublic == true)
+                    @if ($recepte->id % 2 == 1 and $recepte->userid == Auth::id())
                         <div class="card m-2">
                             <img src="{{ RecipeImages::find($recepte->id)->imageurl}}" class="card-img-top" alt="..." style="height: 300px">
                             <div class="card-body">
                                 <h4 class="card-title mb-1">{{ $recepte->title }}</h5>
                                 <h5 class="card-title">{{ Users::find($recepte->userid)->name }}</h5>
                                 <p class="card-text" style="max-height: 200px; overflow: hidden">{{ $recepte->desc }}</p>
-                                <button type="button" class="d-inline btn btn-outline-danger">Patīk</button>
-                                <button type="button" class="d-inline btn btn-outline-danger ml-1">Saglabāt</button> 
+                                <button type="button" class="d-inline btn btn-warning">Rediģēt</button>
+                                <button type="button" class="d-inline btn btn-danger ml-1">Dzēst</button> 
                             </div>
                         </div>
                     @endif
