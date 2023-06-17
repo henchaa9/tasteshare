@@ -62,13 +62,21 @@ use App\Models\RecipeImages;
                 @foreach ($receptes as $recepte )
                     @if ($recepte->id % 2 == 0 and $recepte->ispublic == true)
                         <div class="card m-2">
-                            <img src="{{ RecipeImages::find($recepte->id)->imageurl}}"  class="card-img-top" alt="..." style="height: 300px">
+                            @if (RecipeImages::find($recepte->id)->imageurl)
+                                <img src="{{ RecipeImages::find($recepte->id)->imageurl}}"  class="card-img-top" alt="..." style="height: 300px">
+                            @endif
                             <div class="card-body">
                                 <h4 class="card-title mb-1">{{ $recepte->title }}</h5>
                                 <h5 class="card-title">{{ Users::find($recepte->userid)->name }}</h5>
                                 <p class="card-text" style="max-height: 200px; overflow: hidden">{{ $recepte->desc }}</p>
-                                <button type="button" class="d-inline btn btn-outline-danger">Patīk</button>
-                                <button type="button" class="d-inline btn btn-outline-danger ml-1">Saglabāt</button> 
+                                @if (Auth::check())
+                                    <button type="button" class="d-inline btn btn-outline-danger">Patīk</button>
+                                    <button type="button" class="d-inline btn btn-outline-danger ml-1">Saglabāt</button> 
+                                @endif
+                                @if (Auth::guest())
+                                    <button type="button" class="d-inline btn btn-outline-danger" href="login">Patīk</button>
+                                    <button type="button" class="d-inline btn btn-outline-danger ml-1" href="login">Saglabāt</button> 
+                                @endif 
                             </div>
                         </div>
                     @endif
@@ -78,7 +86,9 @@ use App\Models\RecipeImages;
                 @foreach ($receptes as $recepte)
                     @if ($recepte->id % 2 == 1 and $recepte->ispublic == true)
                         <div class="card m-2">
-                            <img src="{{ RecipeImages::find($recepte->id)->imageurl}}" class="card-img-top" alt="..." style="height: 300px">
+                            @if (RecipeImages::find($recepte->id)->imageurl)
+                                <img src="{{ RecipeImages::find($recepte->id)->imageurl}}" class="card-img-top" alt="..." style="height: 300px">
+                            @endif
                             <div class="card-body">
                                 <h4 class="card-title mb-1">{{ $recepte->title }}</h5>
                                 <h5 class="card-title">{{ Users::find($recepte->userid)->name }}</h5>
