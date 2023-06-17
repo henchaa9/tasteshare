@@ -7,6 +7,11 @@ use App\Models\Recipes;
 
 class RecepteController extends Controller
 {
+    public function index()
+    {
+        return view('welcome', ['receptes' => Recipes::all()]);
+    }
+
     public function saglabatRecepti(Request $request)
     {
         $newRecipe = new Recipes;

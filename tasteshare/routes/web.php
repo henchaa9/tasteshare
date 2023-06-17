@@ -14,9 +14,7 @@ use App\Http\Controllers\RecepteController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [RecepteController::class, 'index']);
 
 Route::get('/jaunarecepte', function () {
     return view('jaunarecepte');

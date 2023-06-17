@@ -1,3 +1,6 @@
+<?php
+use App\Models\Users
+?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -43,38 +46,20 @@
     <div class="container">
         <div class="row">
             <div class="col" style="width: 600px">
-                <div class="card m-2">
-                    <img src="https://media-cdn.tripadvisor.com/media/photo-s/0d/e8/76/f5/the-terrible-risotto.jpg" class="card-img-top" alt="..." style="height: 300px">
-                    <div class="card-body">
-                        <h4 class="card-title mb-1">Risotto Maskačkas stilā</h5>
-                        <h5 class="card-title">Tatjana</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, cum in. Accusantium deleniti similique ad harum nemo, a ab possimus voluptatibus qui debitis beatae alias quis? Error quidem eius rerum.</p>
-                        <button type="button" class="d-inline btn btn-outline-danger">Patīk</button>
-                        <button type="button" class="d-inline btn btn-outline-danger ml-1">Saglabāt</button> 
+                @foreach ($receptes as $recepte)
+                    <div class="card m-2">
+                        <img src="{{ $recepte->foto }}" class="card-img-top" alt="..." style="height: 300px">
+                        <div class="card-body">
+                            <h4 class="card-title mb-1">{{ $recepte->title }}</h5>
+                            <h5 class="card-title">{{ Users::find($recepte->userid)->name }}</h5>
+                            <p class="card-text">{{ $recepte->desc }}</p>
+                            <button type="button" class="d-inline btn btn-outline-danger">Patīk</button>
+                            <button type="button" class="d-inline btn btn-outline-danger ml-1">Saglabāt</button> 
+                        </div>
                     </div>
-                </div>
-                <div class="card m-2">
-                    <img src="https://i0.wp.com/www.garsigalatvija.lv/wp-content/uploads/2012/02/Pupinzupa_VO_3110810_1280.jpg?resize=1080%2C809" class="card-img-top" alt="..." style="height: 300px">
-                    <div class="card-body">
-                        <h4 class="card-title mb-1">Pupu zupa bez pupām</h5>
-                        <h5 class="card-title">Bonifācijs</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, cum in. Accusantium deleniti similique ad harum nemo, a ab possimus voluptatibus qui debitis beatae alias quis? Error quidem eius rerum.</p>
-                        <button type="button" class="d-inline btn btn-outline-danger">Patīk</button>
-                        <button type="button" class="d-inline btn btn-outline-danger ml-1">Saglabāt</button> 
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="col" style="width: 600px">
-                <div class="card m-2">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHwqbFXhX6z_1csQJwwaOKsMpxsuznWqAhZw&usqp=CAU" class="card-img-top" alt="..." style="height: 300px">
-                    <div class="card-body">
-                        <h4 class="card-title mb-1">Pelmeņu ieberziens</h5>
-                        <h5 class="card-title">Markuss</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, cum in. Accusantium deleniti similique ad harum nemo, a ab possimus voluptatibus qui debitis beatae alias quis? Error quidem eius rerum.</p>
-                        <button type="button" class="d-inline btn btn-warning">Rediģēt</button>
-                        <button type="button" class="d-inline btn btn-danger ml-1">Dzēst</button> 
-                    </div>
-                </div>
             </div>
         </div>
     </div>
