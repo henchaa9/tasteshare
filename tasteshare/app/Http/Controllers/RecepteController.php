@@ -23,6 +23,11 @@ class RecepteController extends Controller
         return view('recepte', ['receptes' => Recipes::find($id)]);
     }
 
+    public function redigetview($id)
+    {
+        return view('rediget', ['receptes' => Recipes::find($id)]);
+    }
+
     public function saglabatRecepti(Request $request)
     {
         $newRecipe = new Recipes;
@@ -44,6 +49,26 @@ class RecepteController extends Controller
 
 
         return redirect('');
+    }
+
+    public function redigetRecepti($id, Request $request)
+    {
+        $rrecepte = Recipes::find($id);
+        $rrecepte->title = $request->input('nosaukums');
+        $rrecepte->desc = $request->input('apraksts');
+        $rrecepte->preptime = $request->input('sagatavosanasLaiks');
+        $rrecepte->cooktime = $request->input('pagatavosanasLaiks');
+        $rrecepte->servings = $request->input('porcijas');
+        $rrecepte->instructions = $request->input('pagatavosana');
+        $rrecepte->save();
+
+        $recipeImage = RecipeImages::where('recipeid', $id)->first();
+        if ($recipeImage) {
+            $recipeImage->imageurl = $request->input('foto') ?? 'https://cdn-icons-png.flaticon.com/512/2771/2771401.png';
+            $recipeImage->save();
+        }
+
+        return redirect('/');
     }
 
     public function search(Request $request)

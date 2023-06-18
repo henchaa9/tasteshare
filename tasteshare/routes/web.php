@@ -22,7 +22,7 @@ Route::get('/jaunarecepte', function () {
 
 Route::get('/manasreceptes', [RecepteController::class, 'manasreceptes'])->name('manasreceptes');
 
-Route::get('/recepte/{id}', [RecepteController::class, 'raditrecepti']);
+Route::get('/rediget/{id}', [RecepteController::class, 'redigetview']);
 
 Route::get('/ielogoties', function () {
     return view('ielogoties');
@@ -36,6 +36,8 @@ Route::post('/search', [RecepteController::class, 'search'])->name('search');
 
 
 Route::post('/saglabatReceptiRoute', [RecepteController::class, 'saglabatRecepti'])->name('saglabatRecepti');
+Route::put('/redigetReceptiRoute/{id}', [RecepteController::class, 'redigetRecepti'])->name('redigetRecepti');
+
 
 Auth::routes();
 
