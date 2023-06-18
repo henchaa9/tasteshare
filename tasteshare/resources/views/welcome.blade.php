@@ -33,16 +33,20 @@ use App\Models\Recipes;
                                 <img src="{{ $recipeImage->imageurl }}" class="card-img-top" alt="..." style="height: 300px">
                             @endif
                             <div class="card-body">
-                                <h4 class="card-title mb-1">{{ $recepte->title }}</h5>
+                                <a href="recepte/{{$recepte->id}}" class="text-dark"><h4 class="card-title mb-1">{{ $recepte->title }}</h4></a>
                                 <h5 class="card-title">{{ Users::find($recepte->userid)->name }}</h5>
                                 <p class="card-text" style="max-height: 200px; overflow: hidden">{{ $recepte->desc }}</p>
                                 @if (Auth::check())
-                                    <button type="button" class="d-inline btn btn-outline-danger">Patīk</button>
-                                    <button type="button" class="d-inline btn btn-outline-danger ml-1">Saglabāt</button> 
-                                @endif
-                                @if (Auth::guest())
-                                    <button type="button" class="d-inline btn btn-outline-danger" href="login">Patīk</button>
-                                    <button type="button" class="d-inline btn btn-outline-danger ml-1" href="login">Saglabāt</button> 
+                                    @if ($recepte->userid == Auth::id())
+                                        <button type="button" class="d-inline btn btn-warning">Rediģēt</button>
+                                        <button type="button" class="d-inline btn btn-danger ml-1">Dzēst</button> 
+                                    @else
+                                        <button type="button" class="d-inline btn btn-outline-danger">Patīk</button>
+                                        <button type="button" class="d-inline btn btn-outline-danger ml-1">Saglabāt</button> 
+                                    @endif
+                                @else
+                                    <a type="button" class="d-inline btn btn-outline-danger" href="login">Patīk</a>
+                                    <a type="button" class="d-inline btn btn-outline-danger ml-1" href="login">Saglabāt</a> 
                                 @endif 
                             </div>
                         </div>
@@ -63,11 +67,21 @@ use App\Models\Recipes;
                                 <img src="{{ $recipeImage->imageurl }}" class="card-img-top" alt="..." style="height: 300px">
                             @endif
                                 <div class="card-body">
-                                <h4 class="card-title mb-1">{{ $recepte->title }}</h5>
+                                <a href="recepte/{{$recepte->id}}" class="text-dark"><h4 class="card-title mb-1">{{ $recepte->title }}</h4></a>
                                 <h5 class="card-title">{{ Users::find($recepte->userid)->name }}</h5>
                                 <p class="card-text" style="max-height: 200px; overflow: hidden">{{ $recepte->desc }}</p>
-                                <button type="button" class="d-inline btn btn-outline-danger">Patīk</button>
-                                <button type="button" class="d-inline btn btn-outline-danger ml-1">Saglabāt</button> 
+                                @if (Auth::check())
+                                    @if ($recepte->userid == Auth::id())
+                                        <button type="button" class="d-inline btn btn-warning">Rediģēt</button>
+                                        <button type="button" class="d-inline btn btn-danger ml-1">Dzēst</button> 
+                                    @else
+                                        <button type="button" class="d-inline btn btn-outline-danger">Patīk</button>
+                                        <button type="button" class="d-inline btn btn-outline-danger ml-1">Saglabāt</button> 
+                                    @endif
+                                @else
+                                    <a type="button" class="d-inline btn btn-outline-danger" href="login">Patīk</a>
+                                    <a type="button" class="d-inline btn btn-outline-danger ml-1" href="login">Saglabāt</a> 
+                                @endif 
                             </div>
                         </div>
                     @endif

@@ -18,6 +18,11 @@ class RecepteController extends Controller
         return view('manasreceptes', ['receptes' => Recipes::all()]);
     }
 
+    public function raditrecepti($id)
+    {
+        return view('recepte', ['receptes' => Recipes::find($id)]);
+    }
+
     public function saglabatRecepti(Request $request)
     {
         $newRecipe = new Recipes;

@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>TasteShare</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -65,6 +65,7 @@
                             <a class="nav-link" href="jaunarecepte">Jauna recepte <span class="sr-only">(current)</span></a>
                         </li>
                     </ul>
+
 
 
                     <!-- Right Side Of Navbar -->
