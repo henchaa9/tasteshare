@@ -55,16 +55,28 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="manasreceptes">Manas receptes <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="">Mīļākās receptes <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="jaunarecepte">Jauna recepte <span class="sr-only">(current)</span></a>
-                        </li>
-                    </ul>
+                @auth
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url('manasreceptes') }}">Manas receptes <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url('#') }}">Mīļākās receptes <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url('jaunarecepte') }}">Jauna recepte <span class="sr-only">(current)</span></a>
+                    </li>
+                @else
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('login') }}">Manas receptes <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('login') }}">Mīļākās receptes <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('login') }}">Jauna recepte <span class="sr-only">(current)</span></a>
+                    </li>
+                @endguest
+            </ul>
 
 
 
@@ -132,51 +144,6 @@
   <div class="container pt-2">
     <!-- Section: Social media -->
     <section class="mb-1">
-      <!-- Facebook -->
-      <!-- Facebook --
-      <a
-        class="btn btn-link btn-floating btn-lg text-dark m-1"
-        href="#!"
-        role="button"
-        data-mdb-ripple-color="dark"
-        ><i class="fab fa-facebook-f"></i
-      ></a>
-
-      !-- Twitter --
-      <a
-        class="btn btn-link btn-floating btn-lg text-dark m-1"
-        href="#!"
-        role="button"
-        data-mdb-ripple-color="dark"
-        ><i class="fab fa-twitter"></i
-      ></a>
-
-      !-- Google --
-      <a
-        class="btn btn-link btn-floating btn-lg text-dark m-1"
-        href="#!"
-        role="button"
-        data-mdb-ripple-color="dark"
-        ><i class="fab fa-google"></i
-      ></a>
-
-      !-- Instagram --
-      <a
-        class="btn btn-link btn-floating btn-lg text-dark m-1"
-        href="#!"
-        role="button"
-        data-mdb-ripple-color="dark"
-        ><i class="fab fa-instagram"></i
-      ></a>
-
-      !-- Linkedin --
-      <a
-        class="btn btn-link btn-floating btn-lg text-dark m-1"
-        href="#!"
-        role="button"
-        data-mdb-ripple-color="dark"
-        ><i class="fab fa-linkedin"></i
-      ></a> -->
       <!-- Github -->
       <a
         class="btn btn-link btn-floating btn-sm text-dark p-3 " 
