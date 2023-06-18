@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>TasteShare</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -16,15 +16,10 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <!-- bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <script>
-    // Initialize Bootstrap dropdowns
-    $(document).ready(function () {
-        $('.dropdown-toggle').dropdown();
-    });
-</script>
+
 
 </head>
 <body>
@@ -55,8 +50,8 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        <form class="form-inline my-2 my-lg-0">
+                        <!-- Search -->
+                        <form action="/search" class="form-inline my-2 my-lg-0">
                         <li class="nav-item active">
                             <input class="form-control mr-sm-2" type="search" placeholder="Meklēt" aria-label="Search">
                         </li>
@@ -64,10 +59,11 @@
                             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Meklēt</button>
                         </li>
                         </form>
+                        <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Pieslēgties') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Ielogoties') }}</a>
                                 </li>
                             @endif
 
