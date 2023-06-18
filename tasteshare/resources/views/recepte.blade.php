@@ -1,6 +1,6 @@
-@extends ('layouts.app')
+@extends('layouts.app')
 
-@section ('content')
+@section('content')
 <?php
 use App\Models\Users;
 use App\Models\RecipeImages;
@@ -11,7 +11,7 @@ use App\Models\Recipes;
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{ $receptes->preptime }}</title>
+        <title>Recepte</title>
         <!-- bootstrap -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     </head>
