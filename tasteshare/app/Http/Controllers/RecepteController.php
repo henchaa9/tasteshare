@@ -18,10 +18,6 @@ class RecepteController extends Controller
         return view('manasreceptes', ['receptes' => Recipes::all()]);
     }
 
-    public function upvote()
-    {
-    }
-
     public function saglabatRecepti(Request $request)
     {
         $newRecipe = new Recipes;
@@ -38,7 +34,7 @@ class RecepteController extends Controller
 
         $newPhoto = new RecipeImages;
         $newPhoto->recipeid = $newRecipe->id;
-        $newPhoto->imageurl = $request->foto;
+        $newPhoto->imageurl = $request->foto ?? 'https://cdn-icons-png.flaticon.com/512/2771/2771401.png';
         $newPhoto->save();
 
 
