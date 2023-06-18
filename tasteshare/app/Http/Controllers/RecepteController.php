@@ -40,4 +40,19 @@ class RecepteController extends Controller
 
         return redirect('');
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $results = Recipes::where('title', 'like', "%$query%")
+                         ->orWhere('desc', 'like', "%$query%")
+                         ->orWhere('instructions', 'like', "%$query%")
+                         ->get();
+    
+        $imageUrls = RecipeImages::whereIn('recipeid', $results->pluck('id'))->pluck('imageurl', 'recipeid');
+    
+        return view('search_results', compact('results', 'query', 'imageUrls'));
+    }
+    
+    
 }

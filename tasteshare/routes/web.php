@@ -30,6 +30,9 @@ Route::get('/registreties', function () {
     return view('registreties');
 });
 
+Route::post('/search', [RecepteController::class, 'search'])->name('search');
+
+
 Route::post('/saglabatReceptiRoute', [RecepteController::class, 'saglabatRecepti'])->name('saglabatRecepti');
 
 Auth::routes();

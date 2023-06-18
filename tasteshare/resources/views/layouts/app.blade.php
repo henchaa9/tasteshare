@@ -51,9 +51,10 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Search -->
-                        <form action="/search" class="form-inline my-2 my-lg-0">
+                        <form class="form-inline my-2 my-lg-0" action="{{URL::to('/search')}}" method="POST">
+                            {{csrf_field()}}
                         <li class="nav-item active">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Meklēt" aria-label="Search">
+                            <input class="form-control mr-sm-2" type="text" name="query" placeholder="Meklēt" aria-label="Search">
                         </li>
                         <li class="nav-item active">
                             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Meklēt</button>
