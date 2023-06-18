@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>TasteShare</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -48,6 +48,7 @@
                     </ul>
 
 
+
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Search -->
@@ -64,6 +65,7 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Ielogoties') }}</a>
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Ielogoties') }}</a>
                                 </li>
                             @endif
@@ -106,16 +108,6 @@
             @yield('content')
         </main>
     </div>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('searchForm').addEventListener('submit', function(event) {
-            var query = document.getElementById('query').value.trim();
-            if (query === '') {
-                event.preventDefault(); // Prevent form submission
-            }
-        });
-    });
-</script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kZwODZxfnA16QAmngGSL9KsBzKObdJ5uG7qTN1OWvrVn30qOLKfRTP6cwxTD5Anf" crossorigin="anonymous"></script>
 </body>
