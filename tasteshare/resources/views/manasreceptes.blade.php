@@ -16,6 +16,7 @@ use App\Models\RecipeImages;
     </head>
     <body class="antialiased">
     <div class="container">
+    <h2>Manas receptes</h2>
         <div class="row">
             <div class="col" style="max-width: 500px">
                 @foreach ($receptes as $recepte )
