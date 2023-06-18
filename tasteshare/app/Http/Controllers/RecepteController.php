@@ -52,6 +52,7 @@ class RecepteController extends Controller
         $results = Recipes::where('title', 'like', "%$query%")
                          ->orWhere('desc', 'like', "%$query%")
                          ->orWhere('instructions', 'like', "%$query%")
+                         ->with('user') // Load the user information for each recipe
                          ->get();
     
         $imageUrls = RecipeImages::whereIn('recipeid', $results->pluck('id'))->pluck('imageurl', 'recipeid');
