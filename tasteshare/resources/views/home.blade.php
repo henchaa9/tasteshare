@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Panelis') }}</div>
+                <div class="card-header">{{ __('Autorizācijas panelis') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('Tu jau esi ielogojies!') }}
+                    {{ __('Tu esi ielogojies!') }}
                 </div>
             </div>
         </div>
