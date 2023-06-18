@@ -18,9 +18,9 @@ Route::get('/', [RecepteController::class, 'index']);
 
 Route::get('/jaunarecepte', function () {
     return view('jaunarecepte');
-});
+})->name('jaunarecepte');
 
-Route::get('/manasreceptes', [RecepteController::class, 'manasreceptes']);
+Route::get('/manasreceptes', [RecepteController::class, 'manasreceptes'])->name('manasreceptes');
 
 Route::get('/recepte/{id}', [RecepteController::class, 'raditrecepti']);
 
