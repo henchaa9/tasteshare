@@ -4,7 +4,7 @@
     <div class="container">
         <h2>Manas receptes</h2>
         <div class="row">
-            <div class="col" style="max-width: 500px">
+            <div class="col" style="max-width: 550px">
                 @foreach ($receptes as $recepte)
                     @if ($recepte->id % 2 == 0 && $recepte->userid == Auth::id())
                         <div class="card m-2">
@@ -31,7 +31,7 @@
                     @endif
                 @endforeach
             </div>
-            <div class="col" style="max-width: 500px">
+            <div class="col" style="max-width: 550px">
                 @foreach ($receptes as $recepte)
                     @if ($recepte->id % 2 == 1 && $recepte->userid == Auth::id())
                         <div class="card m-2">

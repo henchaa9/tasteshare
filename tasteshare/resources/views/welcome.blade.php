@@ -19,7 +19,7 @@ use App\Models\Recipes;
     <div class="container">
     <h2>Populārākās receptes</h2>
         <div class="row">
-            <div class="col" style="max-width: 500px">
+            <div class="col" style="max-width: 550px">
                 @foreach ($receptes as $recepte )
                     @if ($recepte->id % 2 == 0 and $recepte->ispublic == true)
                         <div class="card m-2">
@@ -30,7 +30,7 @@ use App\Models\Recipes;
                                     ->first();
                             @endphp
                             @if ($recipeImage)
-                                <img src="{{ $recipeImage->imageurl }}" class="card-img-top" alt="..." style="height: 300px">
+                                <img src="{{ $recipeImage->imageurl }}" class="card-img-top" alt="..." style="height: 300px; witdth">
                             @endif
                             <div class="card-body">
                                 <a href="recepte/{{$recepte->id}}" class="text-dark"><h4 class="card-title mb-1">{{ $recepte->title }}</h4></a>
@@ -53,7 +53,7 @@ use App\Models\Recipes;
                     @endif
                 @endforeach
             </div>
-            <div class="col" style="max-width: 500px">
+            <div class="col" style="max-width: 550px">
                 @foreach ($receptes as $recepte)
                     @if ($recepte->id % 2 == 1 and $recepte->ispublic == true)
                         <div class="card m-2">

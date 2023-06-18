@@ -11,7 +11,7 @@
         @else
             <div class="row">
                 @foreach ($results as $result)
-                    <div class="col-lg-6" style="max-width: 500px">
+                    <div class="col-lg-6" style="max-width: 550px">
                         <div class="card m-2">
                             @php
                                 $recipeImage = App\Models\RecipeImages::where('recipeid', $result->id)->first();
