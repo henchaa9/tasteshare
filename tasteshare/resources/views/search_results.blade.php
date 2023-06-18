@@ -22,9 +22,9 @@
                             <div class="card-body">
                                 <h4 class="card-title">{{ $result->title }}</h4>
                                 <p class="card-text">{{ $result->desc }}</p>
-                                <p class="card-text">Prep Time: {{ $result->preptime }}</p>
-                                <p class="card-text">Cook Time: {{ $result->cooktime }}</p>
-                                <p class="card-text">Servings: {{ $result->servings }}</p>
+                                <p class="card-text">Sagatavošanas laiks: {{ $result->preptime }}</p>
+                                <p class="card-text">Gatavošanas laiks: {{ $result->cooktime }}</p>
+                                <p class="card-text">Porciju skaits: {{ $result->servings }}</p>
                                 <!-- Additional recipe details here -->
                             </div>
                         </div>

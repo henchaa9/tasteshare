@@ -51,10 +51,10 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Search -->
-                        <form class="form-inline my-2 my-lg-0" action="{{URL::to('/search')}}" method="POST">
+                        <form class="form-inline my-2 my-lg-0" action="{{URL::to('/search')}}" method="POST" id="searchForm">
                             {{csrf_field()}}
                         <li class="nav-item active">
-                            <input class="form-control mr-sm-2" type="text" name="query" placeholder="Meklēt" aria-label="Search">
+                            <input class="form-control mr-sm-2" type="text" name="query" id="query" placeholder="Meklēt" aria-label="Search">
                         </li>
                         <li class="nav-item active">
                             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Meklēt</button>
@@ -106,6 +106,16 @@
             @yield('content')
         </main>
     </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            var query = document.getElementById('query').value.trim();
+            if (query === '') {
+                event.preventDefault(); // Prevent form submission
+            }
+        });
+    });
+</script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kZwODZxfnA16QAmngGSL9KsBzKObdJ5uG7qTN1OWvrVn30qOLKfRTP6cwxTD5Anf" crossorigin="anonymous"></script>
 </body>
