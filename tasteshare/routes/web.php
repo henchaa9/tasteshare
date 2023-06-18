@@ -40,3 +40,6 @@ Route::post('/saglabatReceptiRoute', [RecepteController::class, 'saglabatRecepti
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/recepte/{id}', [RecepteController::class, 'raditrecepti'])->name('recepte');
+
