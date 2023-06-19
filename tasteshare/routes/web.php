@@ -34,6 +34,12 @@ Route::put('/redigetReceptiRoute/{id}', [RecepteController::class, 'redigetRecep
 
 Route::get('/recepte/{id}', [RecepteController::class, 'raditrecepti'])->name('recepte');
 
+Route::delete('/manasreceptes/delete/{id}', 'RecepteController@delete')->name('recepte.delete');
+
+
+
+
+
 
 /*Autorizācija*/
 
@@ -65,12 +71,16 @@ Route::get('/profile/update', function () {
     return view('update-profile');
 })->name('profile.update-page');
 
+
 // Upvote a post
 Route::post('/recipes/{recepte}/upvote', [UpvoteController::class, 'upvote'])->name('recipes.upvote');
 
 // Remove upvote from a post
 Route::delete('/recipes/{recepte}/upvote', [UpvoteController::class, 'upvote'])->name('recipes.upvote');
 
+Route::get('/profile/delete', [UserController::class, 'confirmDelete'])->name('profile.confirmDelete');
+
+Route::post('/profile/delete', [UserController::class, 'destroy'])->name('profile.delete');
 
 
 

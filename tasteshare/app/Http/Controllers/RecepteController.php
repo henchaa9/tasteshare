@@ -84,5 +84,24 @@ class RecepteController extends Controller
         return view('search_results', compact('results', 'query', 'imageUrls'));
     }
     
+    public function delete($id)
+    {
+        $recipe = Recipes::find($id);
+    
+        if (!$recipe) {
+            return redirect()->back()->with('error', 'Recepte nav atrasta.');
+        }
+    
+        // Check if the authenticated user has permission to delete the recipe
+        if ($recipe->userid != Auth::id()) {
+            return redirect()->back()->with('error', 'Jums nav atļaujas dzēst šo recepti.');
+        }
+    
+        // Delete the recipe
+        $recipe->delete();
+    
+        return redirect()->back()->with('success', 'Recepte ir veiksmīgi dzēsta.');
+    }
+    
     
 }

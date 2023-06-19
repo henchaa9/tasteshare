@@ -34,7 +34,6 @@ class RecipesController extends AdminController
         $grid->column('cooktime', __('Cooktime'));
         $grid->column('servings', __('Servings'));
         $grid->column('instructions', __('Instructions'));
-        $grid->column('upvotes', __('Upvotes'));
         $grid->column('ispublic', __('Ispublic'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
@@ -60,7 +59,6 @@ class RecipesController extends AdminController
         $show->field('cooktime', __('Cooktime'));
         $show->field('servings', __('Servings'));
         $show->field('instructions', __('Instructions'));
-        $show->field('upvotes', __('Upvotes'));
         $show->field('ispublic', __('Ispublic'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
@@ -84,7 +82,6 @@ class RecipesController extends AdminController
         $form->number('cooktime', __('Cooktime'));
         $form->number('servings', __('Servings'));
         $form->textarea('instructions', __('Instructions'));
-        $form->number('upvotes', __('Upvotes'));
         $form->switch('ispublic', __('Ispublic'));
 
         return $form;

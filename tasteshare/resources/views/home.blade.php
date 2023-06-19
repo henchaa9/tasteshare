@@ -20,4 +20,10 @@
         </div>
     </div>
 </div>
+
+<script>
+    setTimeout(function() {
+        window.location.href = "/";
+    }, 3000); // Redirect after 5 seconds (adjust the time as needed)
+</script>
 @endsection

@@ -48,6 +48,36 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'Profils veiksmīgi atjaunots.');
     }
 
+    public function destroy(Request $request)
+{
+    // Verify password and perform deletion
+    $password = $request->input('password');
+
+    if (!Hash::check($password, $request->user()->password)) {
+        // Password does not match, handle the error
+        return back()->withErrors(['password' => 'Nepareiza parole']);
+    }
+
+    // Password is correct, proceed with deletion
+    // Delete the user's recipes
+    $user = $request->user();
+    $user->recipes()->delete();
+
+    // Delete the user account
+    $user->delete();
+
+    // Perform any additional actions (e.g., logging out the user)
+
+    // Redirect the user to a confirmation page or any other desired location
+    return redirect()->route('account.deleted');
+}
+
+
+    public function confirmDelete()
+    {
+        return view('account-delete');
+    }
+
 
 }
 
