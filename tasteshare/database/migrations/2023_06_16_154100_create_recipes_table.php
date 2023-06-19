@@ -20,7 +20,6 @@ return new class extends Migration
             $table->integer('cooktime');
             $table->integer('servings');
             $table->text('instructions');
-            $table->integer('upvotes');
             $table->boolean('ispublic');
             $table->foreign('userid')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

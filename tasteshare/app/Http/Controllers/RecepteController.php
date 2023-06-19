@@ -37,7 +37,6 @@ class RecepteController extends Controller
         $newRecipe->cooktime = $request->pagatavosanasLaiks;
         $newRecipe->servings = $request->porcijas;
         $newRecipe->instructions = $request->pagatavosana;
-        $newRecipe->upvotes = 0;
         $newRecipe->ispublic = 0;
         $newRecipe->userid = $request->user()->id;
         $newRecipe->save();
