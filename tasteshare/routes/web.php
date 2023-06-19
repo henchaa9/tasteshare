@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecepteController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,8 @@ use App\Http\Controllers\RecepteController;
 |
 */
 
+/*Receptes*/
+
 Route::get('/', [RecepteController::class, 'index']);
 
 Route::get('/jaunarecepte', function () {
@@ -24,6 +27,15 @@ Route::get('/manasreceptes', [RecepteController::class, 'manasreceptes'])->name(
 
 Route::get('/rediget/{id}', [RecepteController::class, 'redigetview']);
 
+Route::post('/saglabatReceptiRoute', [RecepteController::class, 'saglabatRecepti'])->name('saglabatRecepti');
+
+Route::put('/redigetReceptiRoute/{id}', [RecepteController::class, 'redigetRecepti'])->name('redigetRecepti');
+
+Route::get('/recepte/{id}', [RecepteController::class, 'raditrecepti'])->name('recepte');
+
+
+/*Autorizācija*/
+
 Route::get('/ielogoties', function () {
     return view('ielogoties');
 });
@@ -32,16 +44,31 @@ Route::get('/registreties', function () {
     return view('registreties');
 });
 
+Auth::routes();
+
+
+/*Meklēšana*/
+
 Route::post('/search', [RecepteController::class, 'search'])->name('search');
 
 
-Route::post('/saglabatReceptiRoute', [RecepteController::class, 'saglabatRecepti'])->name('saglabatRecepti');
-Route::put('/redigetReceptiRoute/{id}', [RecepteController::class, 'redigetRecepti'])->name('redigetRecepti');
+/*Profils*/
+
+Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+
+Route::get('/profile/edit', [UserController::class, 'edit'])->name('profile.edit');
+
+Route::put('/profile', [UserController::class, 'update'])->name('profile.update');
+
+Route::get('/profile/update', function () {
+    return view('update-profile');
+})->name('profile.update-page');
 
 
-Auth::routes();
+
+/*Home*/
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/recepte/{id}', [RecepteController::class, 'raditrecepti'])->name('recepte');
+
 
