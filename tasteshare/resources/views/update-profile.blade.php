@@ -43,7 +43,7 @@
                 <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" autocomplete="new-password">
             </div>
 
-            <button type="submit" class="btn btn-warning">Atjaunot</button>
+            <button type="submit" class="btn btn-warning">Atjaunināt</button>
 
         </form>
     </div>
