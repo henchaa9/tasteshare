@@ -41,8 +41,14 @@ use App\Models\Recipes;
                                         <a type="button" class="d-inline btn btn-warning" href="rediget/{{ $recepte->id }}">Rediģēt</a>
                                         <a type="button" class="d-inline btn btn-danger ml-1" href="">Dzēst</a> 
                                     @else
-                                        <button type="button" class="d-inline btn btn-outline-danger">Patīk</button>
-                                        <button type="button" class="d-inline btn btn-outline-danger ml-1">Saglabāt</button> 
+                                        <form id="upvote-form-{{ $recepte->id }}" action="{{ route('recipes.upvote', $recepte) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            @if ($recepte->isUpvotedByUser())
+                                                @method('DELETE')
+                                            @endif
+                                                <button type="submit" class="d-inline btn btn-outline-danger">Patīk</button>
+                                                <button type="button" class="d-inline btn btn-outline-danger ml-1">Saglabāt</button> 
+                                        </form>
                                     @endif
                                 @else
                                     <a type="button" class="d-inline btn btn-outline-danger" href="login">Patīk</a>
@@ -75,8 +81,14 @@ use App\Models\Recipes;
                                         <a type="button" class="d-inline btn btn-warning" href="rediget/{{ $recepte->id }}">Rediģēt</a>
                                         <button type="button" class="d-inline btn btn-danger ml-1">Dzēst</button> 
                                     @else
-                                        <button type="button" class="d-inline btn btn-outline-danger">Patīk</button>
-                                        <button type="button" class="d-inline btn btn-outline-danger ml-1">Saglabāt</button> 
+                                        <form id="upvote-form-{{ $recepte->id }}" action="{{ route('recipes.upvote', $recepte) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            @if ($recepte->isUpvotedByUser())
+                                                @method('DELETE')
+                                            @endif
+                                                <button type="submit" class="d-inline btn btn-outline-danger">Patīk</button>
+                                                <button type="button" class="d-inline btn btn-outline-danger ml-1">Saglabāt</button> 
+                                        </form>
                                     @endif
                                 @else
                                     <a type="button" class="d-inline btn btn-outline-danger" href="login">Patīk</a>

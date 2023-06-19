@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecepteController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UpvoteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +64,13 @@ Route::put('/profile', [UserController::class, 'update'])->name('profile.update'
 Route::get('/profile/update', function () {
     return view('update-profile');
 })->name('profile.update-page');
+
+// Upvote a post
+Route::post('/recipes/{recepte}/upvote', [UpvoteController::class, 'upvote'])->name('recipes.upvote');
+
+// Remove upvote from a post
+Route::delete('/recipes/{recepte}/upvote', [UpvoteController::class, 'upvote'])->name('recipes.upvote');
+
 
 
 
