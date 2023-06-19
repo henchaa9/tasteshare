@@ -72,7 +72,7 @@ use App\Models\Recipes;
                                 <p class="card-text" style="max-height: 200px; overflow: hidden">{{ $recepte->desc }}</p>
                                 @if (Auth::check())
                                     @if ($recepte->userid == Auth::id())
-                                        <button type="button" class="d-inline btn btn-warning">Rediģēt</button>
+                                        <a type="button" class="d-inline btn btn-warning" href="rediget/{{ $recepte->id }}">Rediģēt</a>
                                         <button type="button" class="d-inline btn btn-danger ml-1">Dzēst</button> 
                                     @else
                                         <button type="button" class="d-inline btn btn-outline-danger">Patīk</button>

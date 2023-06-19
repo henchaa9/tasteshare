@@ -24,7 +24,7 @@
                                 </h4>
                                 <h5 class="card-title">{{ $userName }}</h5>
                                 <p class="card-text" style="max-height: 200px; overflow: hidden">{{ $recepte->desc }}</p>
-                                <button type="button" class="d-inline btn btn-warning">Rediģēt</button>
+                                <a type="button" class="d-inline btn btn-warning" href="rediget/{{ $recepte->id }}">Rediģēt</a>
                                 <button type="button" class="d-inline btn btn-danger ml-1">Dzēst</button>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                                 </h4>
                                 <h5 class="card-title">{{ $userName }}</h5>
                                 <p class="card-text" style="max-height: 200px; overflow: hidden">{{ $recepte->desc }}</p>
-                                <button type="button" class="d-inline btn btn-warning">Rediģēt</button>
+                                <a type="button" class="d-inline btn btn-warning" href="rediget/{{ $recepte->id }}">Rediģēt</a>
                                 <button type="button" class="d-inline btn btn-danger ml-1">Dzēst</button>
                             </div>
                         </div>
