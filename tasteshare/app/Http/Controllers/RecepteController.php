@@ -37,7 +37,7 @@ class RecepteController extends Controller
         $newRecipe->cooktime = $request->pagatavosanasLaiks;
         $newRecipe->servings = $request->porcijas;
         $newRecipe->instructions = $request->pagatavosana;
-        $newRecipe->ispublic = 0;
+        $newRecipe->ispublic = $request->has('ispublic') ? 1 : 0; // Set ispublic based on checkbox
         $newRecipe->userid = $request->user()->id;
         $newRecipe->save();
 
@@ -59,6 +59,7 @@ class RecepteController extends Controller
         $rrecepte->cooktime = $request->input('pagatavosanasLaiks');
         $rrecepte->servings = $request->input('porcijas');
         $rrecepte->instructions = $request->input('pagatavosana');
+        $rrecepte->ispublic = $request->has('ispublic') ? 1 : 0; // Set ispublic based on checkbox
         $rrecepte->save();
 
         $recipeImage = RecipeImages::where('recipeid', $id)->first();

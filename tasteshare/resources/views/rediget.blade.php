@@ -52,9 +52,18 @@ use App\Models\Recipes;
                 <input class="mb-4 p-1 d-block w-50" type="url" name="foto" id="">
             @endif
 
+            <label class="d-block font-weight-bolder" for="ispublic" style="font-size:1.1rem">Privāts/Publisks ieraksts</label>
+            <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="ispublic" name="ispublic" {{ $receptes->ispublic ? 'checked' : '' }}>
+            <label class="custom-control-label" for="ispublic"></label>
+            </div>
+
+
             @method('PUT')
+            <div class="mt-5">
             <button type="submit" class="btn btn-primary d-inline mb-3">Saglabāt</button>
             <button type="reset" class="btn btn-danger d-inline mb-3">Dzēst</button>
+            </div>
         </form>
     </div>
     

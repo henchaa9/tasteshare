@@ -37,13 +37,23 @@
             <label class="d-block font-weight-bolder" for="foto" style="font-size:1.1rem">Saite uz attēlu</label>
             <input class="mb-4 p-1 d-block w-50" type="url" name="foto" id="">
 
-            <button type="submit" class="btn btn-primary d-inline mb-3">Pievienot</button>
-            <button type="reset" class="btn btn-danger d-inline mb-3">Dzēst</button>
-        </form>
-    </div>
+            <label class="d-block font-weight-bolder" for="ispublic" style="font-size:1.1rem">Privāts/Publisks ieraksts</label>
+            <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="ispublic" name="ispublic" checked>
+            <label class="custom-control-label" for="ispublic"></label>
+            </div>
     
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-    </body>
+            <div class="mt-5">
+    <p>
+        <button type="submit" class="btn btn-primary d-inline mb-3">Pievienot</button>
+        <button type="reset" class="btn btn-danger d-inline mb-3">Dzēst</button>
+    </p>
+</div>
+    </form>
+</div>
+
+<!-- Include Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</body>
 </html>
 @endsection
