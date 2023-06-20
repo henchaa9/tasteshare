@@ -11,7 +11,7 @@ use App\Models\Favourites;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Controllers\UserController;
+// use App\Http\Controllers\UserController;
 use Illuminate\Database\Eloquent\Model;
 
 class UserController extends Controller
