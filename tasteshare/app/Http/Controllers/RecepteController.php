@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Recipes;
 use App\Models\RecipeImages;
+use Illuminate\Support\Facades\Storage;
 
 
 class RecepteController extends Controller
@@ -34,6 +35,8 @@ class RecepteController extends Controller
         return view('rediget', ['receptes' => Recipes::find($id)]);
     }
 
+
+
     public function saglabatRecepti(Request $request)
     {
         $newRecipe = new Recipes;
@@ -43,19 +46,25 @@ class RecepteController extends Controller
         $newRecipe->cooktime = $request->pagatavosanasLaiks;
         $newRecipe->servings = $request->porcijas;
         $newRecipe->instructions = $request->pagatavosana;
-        $newRecipe->ispublic = $request->has('ispublic') ? 1 : 0; // Set ispublic based on checkbox
+        $newRecipe->ispublic = $request->has('ispublic') ? 1 : 0;
         $newRecipe->userid = $request->user()->id;
         $newRecipe->save();
-
+    
+        if ($request->hasFile('foto')) {
+            $imagePath = $request->file('foto')->store('public/recepti');
+            $imageUrl = Storage::url($imagePath);
+        } else {
+            $imageUrl = $request->input('foto') ?? 'https://cdn-icons-png.flaticon.com/512/2771/2771401.png';
+        }
+    
         $newPhoto = new RecipeImages;
         $newPhoto->recipeid = $newRecipe->id;
-        $newPhoto->imageurl = $request->foto ?? 'https://cdn-icons-png.flaticon.com/512/2771/2771401.png';
+        $newPhoto->imageurl = $imageUrl;
         $newPhoto->save();
-
-
+    
         return redirect('');
     }
-
+    
     public function redigetRecepti($id, Request $request)
     {
         $rrecepte = Recipes::find($id);
@@ -65,18 +74,20 @@ class RecepteController extends Controller
         $rrecepte->cooktime = $request->input('pagatavosanasLaiks');
         $rrecepte->servings = $request->input('porcijas');
         $rrecepte->instructions = $request->input('pagatavosana');
-        $rrecepte->ispublic = $request->has('ispublic') ? 1 : 0; // Set ispublic based on checkbox
+        $rrecepte->ispublic = $request->has('ispublic') ? 1 : 0;
         $rrecepte->save();
-
+    
         $recipeImage = RecipeImages::where('recipeid', $id)->first();
-        if ($recipeImage) {
-            $recipeImage->imageurl = $request->input('foto') ?? 'https://cdn-icons-png.flaticon.com/512/2771/2771401.png';
-            $recipeImage->save();
+        if ($request->hasFile('foto')) {
+            $imagePath = $request->file('foto')->store('public/recepti');
+            $imageUrl = Storage::url($imagePath);
+            $recipeImage->imageurl = $imageUrl;
         }
-
+        $recipeImage->save();
+    
         return redirect('/');
     }
-
+    
     public function search(Request $request)
     {
         $query = $request->input('query');

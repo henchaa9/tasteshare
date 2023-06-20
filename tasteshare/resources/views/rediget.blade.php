@@ -19,7 +19,7 @@ use App\Models\Recipes;
     <div class="container">
         <h2>Rediģēt recepti</h2>
         <a>*Obligātie lauki</a>
-        <form method="post" action="{{ route('redigetRecepti', $receptes->id) }}">
+        <form method="post" action="{{ route('redigetRecepti', $receptes->id) }}" enctype="multipart/form-data">
             {{ csrf_field() }}
             <label class="d-block mt-3 font-weight-bolder" for="nosaukums" style="font-size:1.1rem">Nosaukums*</label>
             <input class="mb-4 w-50 p-1" type="text" name="nosaukums" value="{{ $receptes->title }}" id="" required>
@@ -39,18 +39,9 @@ use App\Models\Recipes;
             <label class="d-block font-weight-bolder" for="pagatavosana" style="font-size:1.1rem">Pagatavošana*</label>
             <textarea class="mb-4 p-1 w-50 d-block" name="pagatavosana" id="" cols="20" rows="10" required>{{ $receptes->instructions }}</textarea>
 
-            <label class="d-block font-weight-bolder" for="foto" style="font-size:1.1rem">Saite uz attēlu</label>
-            @php
-                $recipeImage = RecipeImages::join('Recipes', 'recipe_images.recipeid', '=', 'recipes.id')
-                    ->where('recipes.id', $receptes->id)
-                    ->select('recipe_images.imageurl')
-                    ->first();
-            @endphp
-            @if ($recipeImage)
-                <input class="mb-4 p-1 d-block w-50" type="url" name="foto" id="" value="{{ $recipeImage->imageurl }}">
-            @else
-                <input class="mb-4 p-1 d-block w-50" type="url" name="foto" id="">
-            @endif
+            <label class="d-block font-weight-bolder" for="foto" style="font-size:1.1rem">Attēls</label>
+            <input class="mb-4 p-1 d-block w-50" type="file" name="foto" id="foto">
+
 
             <label class="d-block font-weight-bolder" for="ispublic" style="font-size:1.1rem">Privāts/Publisks ieraksts</label>
             <div class="custom-control custom-switch">

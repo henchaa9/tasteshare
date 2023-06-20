@@ -14,7 +14,7 @@
     <div class="container">
         <h2>Pievienot jaunu recepti</h2>
         <a>*Obligātie lauki</a>
-        <form method="post" action="{{ route('saglabatRecepti') }}">
+        <form method="post" action="{{ route('saglabatRecepti') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
             <label class="d-block mt-3 font-weight-bolder" for="nosaukums" style="font-size:1.1rem">Nosaukums*</label>
             <input class="mb-4 w-50 p-1" type="text" name="nosaukums" id="" required>
@@ -34,8 +34,8 @@
             <label class="d-block font-weight-bolder" for="pagatavosana" style="font-size:1.1rem">Pagatavošana*</label>
             <textarea class="mb-4 p-1 w-50 d-block" name="pagatavosana" id="" cols="20" rows="10" required></textarea>
 
-            <label class="d-block font-weight-bolder" for="foto" style="font-size:1.1rem">Saite uz attēlu</label>
-            <input class="mb-4 p-1 d-block w-50" type="url" name="foto" id="">
+            <label class="d-block font-weight-bolder" for="foto" style="font-size:1.1rem">Attēls</label>
+            <input class="mb-4 p-1 d-block w-50" type="file" name="foto" id="foto">
 
             <label class="d-block font-weight-bolder" for="ispublic" style="font-size:1.1rem">Privāta/Publiska recepte</label>
             <div class="custom-control custom-switch">
