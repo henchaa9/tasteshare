@@ -54,7 +54,7 @@ use App\Models\Upvotes;
                             @method('DELETE')
                             @endif
                             <button type="submit" class="d-inline btn {{ $recepte->isUpvotedByUser() ? 'btn-danger' : 'btn-outline-danger' }}">Patīk</button>
-                            <p class="d-inline ml-2" style="font-size: 1.2rem">{{ $recepte->upvotes_count }}</p>
+                            <p class="d-inline ml-2 mr-3" style="font-size: 1.2rem">{{ $recepte->upvotes_count }}</p>
                             <button type="button" class="d-inline btn btn-outline-danger ml-1">Saglabāt</button>
                         </form>
                         </div>
