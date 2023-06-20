@@ -63,7 +63,7 @@ use App\Models\Upvotes;
                     <p class="text-justify" style="font-size: 1.2rem">{{ $receptes->instructions }}</p>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="max-width: 100px">
                 @if (Auth::check())
                     @if ($receptes->userid == Auth::id())
                         <a type="button" class="d-inline btn btn-warning" href="rediget/{{ $receptes->id }}">Rediģēt</a>
