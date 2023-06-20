@@ -18,10 +18,15 @@ use App\Models\Upvotes;
 </head>
 <body class="antialiased">
 <div class="container">
-    <h2>Milakas receptes</h2>
+    <h2>Mīļākās receptes</h2>
     <div class="row">
         <div class="col-md-6">
-            @foreach ($receptes->where('ispublic', true)->take($receptes->count() / 2) as $recepte)
+            @php
+                $halfCount = ceil($receptes->where('ispublic', true)->count() / 2);
+                $firstHalfRecipes = $receptes->where('ispublic', true)->take($halfCount);
+            @endphp
+
+            @foreach ($firstHalfRecipes as $recepte)
                 @if ($recepte->favoritedByUser())
                     <div class="card m-2">
                         @php
@@ -37,26 +42,31 @@ use App\Models\Upvotes;
                             <a href="recepte/{{$recepte->id}}" class="text-dark">
                                 <h4 class="card-title mb-1">{{ $recepte->title }}</h4>
                             </a>
-                            <h6 class="card-title">Autors: {{ Users::find($recepte->userid)->name }}</h6>
+                            <h6 class="card-title">Autors: <a href="/users/{{ Users::find($recepte->userid)->name }}" class="text-dark"><u>{{ Users::find($recepte->userid)->name }}</u></a></h6>
                             <p class="card-text" style="max-height: 200px; overflow: hidden">{{ $recepte->desc }}</p>
                             <p class="card-text">Sagatavošanas laiks: {{ $recepte->preptime }} minūtes</p>
                             <p class="card-text">Gatavošanas laiks: {{ $recepte->cooktime }} minūtes</p>
                             <p class="card-text">Porciju skaits: {{ $recepte->servings }}</p>
-                            <div id="upvote-button-{{ $recepte->id }}">
+                            <div id="upvote-button-{{ $recepte->id }}" class="btn-group" data-toggle="buttons">
+
+
+                                <form id="favorites-form-{{ $recepte->id }}" action="{{ route('recipes.favorites.save', $recepte) }}" method="POST">
+                                    {{ csrf_field() }}
+                                    @method('PUT')
+                                    <button type="button" onclick="handleFavorite({{ $recepte->id }})" class="d-inline btn {{ $recepte->favoritedByUser() ? 'btn-warning' : 'btn-outline-warning' }}">
+                                        @if ($recepte->favoritedByUser())
+                                            Saglabāta
+                                        @else
+                                            Saglabāt
+                                        @endif
+                                    </button>
+                                </form>
                                 <form id="upvote-form-{{ $recepte->id }}" action="{{ route('recipes.upvote', $recepte) }}" method="POST">
                                     {{ csrf_field() }}
                                     @if ($recepte->isUpvotedByUser())
                                     @method('DELETE')
                                     @endif
-                                    <button type="submit" class="d-inline btn {{ $recepte->isUpvotedByUser() ? 'btn-danger' : 'btn-outline-danger' }}">Patīk</button>
-                                    <p class="d-inline ml-2" style="font-size: 1.2rem">{{ $recepte->upvotes_count }}</p>
-                                </form>
-                            </div>
-                            <div id="favorites-button-{{ $recepte->id }}">
-                                <form id="favorites-form-{{ $recepte->id }}" action="{{ route('recipes.favorites.save', $recepte) }}" method="POST">
-                                    {{ csrf_field() }}
-                                    @method('PUT')
-                                    <button type="submit" class="d-inline btn {{ $recepte->favoritedByUser() ? 'btn-danger' : 'btn-outline-danger' }}">Saglabāt</button>
+                                    <button type="button" onclick="handleUpvote({{ $recepte->id }})" class="d-inline btn ml-1 {{ $recepte->isUpvotedByUser() ? 'btn-danger' : 'btn-outline-danger' }}">Patīk: {{ $recepte->upvotes_count }}</button>
                                 </form>
                             </div>
                         </div>
@@ -65,7 +75,11 @@ use App\Models\Upvotes;
             @endforeach
         </div>
         <div class="col-md-6">
-            @foreach ($receptes->where('ispublic', true)->skip($receptes->count() / 2) as $recepte)
+            @php
+                $secondHalfRecipes = $receptes->where('ispublic', true)->skip($halfCount);
+            @endphp
+
+            @foreach ($secondHalfRecipes as $recepte)
                 @if ($recepte->favoritedByUser())
                     <div class="card m-2">
                         @php
@@ -81,27 +95,30 @@ use App\Models\Upvotes;
                             <a href="recepte/{{$recepte->id}}" class="text-dark">
                                 <h4 class="card-title mb-1">{{ $recepte->title }}</h4>
                             </a>
-                            <h6 class="card-title">Autors: {{ Users::find($recepte->userid)->name }}</h6>
+                            <h6 class="card-title">Autors: <a href="/users/{{ Users::find($recepte->userid)->name }}" class="text-dark"><u>{{ Users::find($recepte->userid)->name }}</u></a></h6>
                             <p class="card-text" style="max-height: 200px; overflow: hidden">{{ $recepte->desc }}</p>
                             <p class="card-text">Sagatavošanas laiks: {{ $recepte->preptime }} minūtes</p>
                             <p class="card-text">Gatavošanas laiks: {{ $recepte->cooktime }} minūtes</p>
                             <p class="card-text">Porciju skaits: {{ $recepte->servings }}</p>
-                            <div id="upvote-button-{{ $recepte->id }}">
-                                <form id="upvote-form-{{ $recepte->id }}" action="{{ route('recipes.upvote', $recepte) }}" method="POST">
-                                    {{ csrf_field() }}
-                                    @if ($recepte->isUpvotedByUser())
-                                    @method('DELETE')
-                                    @endif
-                                    <button type="submit" class="d-inline btn {{ $recepte->isUpvotedByUser() ? 'btn-danger' : 'btn-outline-danger' }}">Patīk</button>
-                                    <p class="d-inline ml-2" style="font-size: 1.2rem">{{ $recepte->upvotes_count }}</p>
-                                </form>
-                            </div>
-                            <div id="favorites-button-{{ $recepte->id }}">
-                                <form id="favorites-form-{{ $recepte->id }}" action="{{ route('recipes.favorites.save', $recepte) }}" method="POST">
-                                    {{ csrf_field() }}
-                                    @method('PUT')
-                                    <button type="submit" class="d-inline btn {{ $recepte->favoritedByUser() ? 'btn-danger' : 'btn-outline-danger' }}">Saglabāt</button>
-                                </form>
+                            <div id="upvote-button-{{ $recepte->id }}" class="btn-group" data-toggle="buttons">
+                            <form id="favorites-form-{{ $recepte->id }}" action="{{ route('recipes.favorites.save', $recepte) }}" method="POST">
+                                {{ csrf_field() }}
+                                @method('PUT')
+                                <button type="button" onclick="handleFavorite({{ $recepte->id }})" class="d-inline btn {{ $recepte->favoritedByUser() ? 'btn-warning' : 'btn-outline-warning' }}">
+                                        @if ($recepte->favoritedByUser())
+                                            Saglabāta
+                                        @else
+                                            Saglabāt
+                                        @endif
+                                    </button>
+                            </form>
+                            <form id="upvote-form-{{ $recepte->id }}" action="{{ route('recipes.upvote', $recepte) }}" method="POST">
+                                {{ csrf_field() }}
+                                 @if ($recepte->isUpvotedByUser())
+                                @method('DELETE')
+                                 @endif
+                                <button type="button" onclick="handleUpvote({{ $recepte->id }})" class="d-inline btn ml-1 {{ $recepte->isUpvotedByUser() ? 'btn-danger' : 'btn-outline-danger' }}">Patīk: {{ $recepte->upvotes_count }}</button>
+                            </form>
                             </div>
                         </div>
                     </div>
@@ -110,7 +127,17 @@ use App\Models\Upvotes;
         </div>
     </div>
 </div>
+<script>
+    function handleUpvote(recipeId) {
+        var form = document.getElementById('upvote-form-' + recipeId);
+        form.submit();
+    }
+
+    function handleFavorite(recipeId) {
+        var form = document.getElementById('favorites-form-' + recipeId);
+        form.submit();
+    }
+</script>
 </body>
 </html>
 @endsection
-

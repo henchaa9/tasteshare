@@ -14,4 +14,7 @@ Route::group([
     $router->get('/', 'HomeController@index')->name('home');
     $router->resource('users', UserController::class);
     $router->resource('recipes', RecipesController::class);
+    $router->resource('recipe-images', RecipeImageController::class);
+    $router->resource('favorites', FavoritesController::class);
+    $router->resource('upvotes', UpvoteController::class);
 });
