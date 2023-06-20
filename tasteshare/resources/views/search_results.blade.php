@@ -23,7 +23,7 @@
                             <div class="card-body">
                             <a href="{{ route('recepte', ['id' => $result->id]) }}" class="text-dark"><h4 class="card-title mb-1">{{ $result->title }}</h4></a>
 
-                                <h6 class="card-title">Autors: <a href="/users/{{ $userName }}" class="text-dark"><u>{{ $userName }}</u></a></h6>
+                                <h6 class="card-title">Autors: <a href="{{ route('public-profile', ['name' => $userName]) }}" class="text-dark">{{ $userName }}</h6></a>
                                 <p class="card-text">{{ $result->desc }}</p>
                                 <p class="card-text">Sagatavošanas laiks: {{ $result->preptime }} minūtes</p>
                                 <p class="card-text">Gatavošanas laiks: {{ $result->cooktime }} minūtes</p>

@@ -42,7 +42,7 @@ use App\Models\Upvotes;
                             <a href="recepte/{{$recepte->id}}" class="text-dark">
                                 <h4 class="card-title mb-1">{{ $recepte->title }}</h4>
                             </a>
-                            <h6 class="card-title">Autors: <a href="/users/{{ Users::find($recepte->userid)->name }}" class="text-dark"><u>{{ Users::find($recepte->userid)->name }}</u></a></h6>
+                            <h6 class="card-title">Autors: {{ Users::find($recepte->userid)->name }}</h6>
                             <p class="card-text" style="max-height: 200px; overflow: hidden">{{ $recepte->desc }}</p>
                             <p class="card-text">Sagatavošanas laiks: {{ $recepte->preptime }} minūtes</p>
                             <p class="card-text">Gatavošanas laiks: {{ $recepte->cooktime }} minūtes</p>
@@ -95,7 +95,7 @@ use App\Models\Upvotes;
                             <a href="recepte/{{$recepte->id}}" class="text-dark">
                                 <h4 class="card-title mb-1">{{ $recepte->title }}</h4>
                             </a>
-                            <h6 class="card-title">Autors: <a href="/users/{{ Users::find($recepte->userid)->name }}" class="text-dark"><u>{{ Users::find($recepte->userid)->name }}</u></a></h6>
+                            <h6 class="card-title">Autors: {{ Users::find($recepte->userid)->name }}</h6>
                             <p class="card-text" style="max-height: 200px; overflow: hidden">{{ $recepte->desc }}</p>
                             <p class="card-text">Sagatavošanas laiks: {{ $recepte->preptime }} minūtes</p>
                             <p class="card-text">Gatavošanas laiks: {{ $recepte->cooktime }} minūtes</p>

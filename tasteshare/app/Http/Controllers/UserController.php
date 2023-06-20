@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Recipes;
 use App\Models\RecipeImages;
-use App\Models\Upvotes;
+use App\Models\Upvote;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
-use App\Models\Favourites;
+use App\Models\Favorite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -25,7 +25,6 @@ class UserController extends Controller
     $user = Auth::user();
     return view('update-profile', ['user' => $user]);
     }
-
 
     public function profile()
     {
@@ -77,18 +76,18 @@ public function destroy(Request $request)
 
     // Delete the user's favorites
     // Delete the user's favorites
-    $deletedFavorites = Favourites::where('userid', $request->user()->id)->get();
+    $deletedFavorites = Favorite::where('userid', $request->user()->id)->get();
     $deletedFavoritesCount = $deletedFavorites->count();
 
     // Delete the favorites
-    Favourites::where('userid', $request->user()->id)->delete();
+    Favorite::where('userid', $request->user()->id)->delete();
 
     // Display a message with the number of deleted favorites
     $message = 'Deleted ' . $deletedFavoritesCount . ' favorites.';
     dump($message);
 
     // Delete the user's upvotes
-    Upvotes::where('userid', $request->user()->id)->delete();
+    Upvote::where('userid', $request->user()->id)->delete();
 
     // Delete the user's recipes and associated images
     $recipes = Recipes::where('userid', $request->user()->id)->get();

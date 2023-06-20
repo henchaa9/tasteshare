@@ -94,9 +94,10 @@ Route::post('/recipes/{recepte}/upvote', [UpvoteController::class, 'upvote'])->n
 Route::delete('/recipes/{recepte}/upvote', [UpvoteController::class, 'upvote'])->name('recipes.upvote');
 
 
-
+// show favorites page
 Route::get('/favorites', [FavoritesController::class, 'index'])->name('favorites');
 
+// add a recipe to favorites
 Route::put('recipes/{recepte}/favorites/save', [FavoritesController::class, 'save'])->name('recipes.favorites.save');
 
 

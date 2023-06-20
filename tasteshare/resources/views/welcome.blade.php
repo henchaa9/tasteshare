@@ -37,7 +37,7 @@ use App\Models\Upvotes;
                         <a href="recepte/{{$recepte->id}}" class="text-dark">
                             <h4 class="card-title mb-1">{{ $recepte->title }}</h4>
                         </a>
-                        <h6 class="card-title">Autors: {{ Users::find($recepte->userid)->name }}</h6>
+                        <h6 class="card-title">Autors: <a href="{{ route('public-profile', ['name' => Users::find($recepte->userid)->name]) }}" class="text-dark">{{ Users::find($recepte->userid)->name }}</h6></a>
                         <p class="card-text" style="max-height: 200px; overflow: hidden">{{ $recepte->desc }}</p>
                         <p class="card-text">Sagatavošanas laiks: {{ $recepte->preptime }} minūtes</p>
                         <p class="card-text">Gatavošanas laiks: {{ $recepte->cooktime }} minūtes</p>
@@ -92,7 +92,7 @@ use App\Models\Upvotes;
                         <a href="recepte/{{$recepte->id}}" class="text-dark">
                             <h4 class="card-title mb-1">{{ $recepte->title }}</h4>
                         </a>
-                        <h6 class="card-title">Autors: {{ Users::find($recepte->userid)->name }}</h6>
+                        <h6 class="card-title">Autors: <a href="{{ route('public-profile', ['name' => Users::find($recepte->userid)->name]) }}" class="text-dark">{{ Users::find($recepte->userid)->name }}</h6></a>
                         <p class="card-text" style="max-height: 200px; overflow: hidden">{{ $recepte->desc }}</p>
                         <p class="card-text">Sagatavošanas laiks: {{ $recepte->preptime }} minūtes</p>
                         <p class="card-text">Gatavošanas laiks: {{ $recepte->cooktime }} minūtes</p>
@@ -134,19 +134,6 @@ use App\Models\Upvotes;
         </div>
     </div>
 </div>
-
-<script>
-    function handleUpvote(recipeId) {
-        var form = document.getElementById('upvote-form-' + recipeId);
-        form.submit();
-    }
-
-    function handleFavorite(recipeId) {
-        var form = document.getElementById('favorites-form-' + recipeId);
-        form.submit();
-    }
-</script>
-
 </body>
 </html>
 @endsection
