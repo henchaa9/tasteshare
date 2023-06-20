@@ -62,10 +62,53 @@ use App\Models\Recipes;
                     <p class="text-justify" style="font-size: 1.2rem">{{ $receptes->instructions }}</p>
                 </div>
             </div>
+            <div class="row">
+                @if (Auth::check())
+                    @if ($receptes->userid == Auth::id())
+                        <a type="button" class="d-inline btn btn-warning" href="rediget/{{ $receptes->id }}">Rediģēt</a>
+                        <button type="button" class="d-inline btn btn-danger ml-1.1">Dzēst</button>
+                    @else
+                    <div id="upvote-button-{{ $receptes->id }}" class="btn-group" data-toggle="buttons">
+                        <form id="favorites-form-{{ $receptes->id }}" action="{{ route('recipes.favorites.save', $receptes) }}" method="POST">
+                            {{ csrf_field() }}
+                            @method('PUT')
+                            <a type="button" onclick="handleFavorite({{ $receptes->id }})" class="d-inline btn {{ $receptes->favoritedByUser() ? 'btn-warning' : 'btn-outline-warning' }}">
+                                @if ($receptes->favoritedByUser())
+                                    Saglabāta
+                                @else
+                                    Saglabāt
+                                @endif
+                            </a>
+                        </form>
+                        <form id="upvote-form-{{ $receptes->id }}" action="{{ route('recipes.upvote', $receptes) }}" method="POST">
+                            {{ csrf_field() }}
+                            @if ($receptes->isUpvotedByUser())
+                                @method('DELETE')
+                            @endif
+                            <button type="button" onclick="handleUpvote({{ $receptes->id }})" class="d-inline btn ml-1 {{ $receptes->isUpvotedByUser() ? 'btn-danger' : 'btn-outline-danger' }}">Patīk: {{ $receptes->upvotes_count }}</button>
+                        </form>
+                    </div>
+                    @endif
+                @else
+                    <a type="button" class="d-inline btn btn-outline-danger" href="login">Patīk</a>
+                    <a type="button" class="d-inline btn btn-outline-danger ml-1" href="login">Saglabāt</a>
+                @endif
+            </div>
         </div>
         
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+        <script>
+            function handleUpvote(recipeId) {
+                var form = document.getElementById('upvote-form-' + recipeId);
+                form.submit();
+            }
+
+            function handleFavorite(recipeId) {
+                var form = document.getElementById('favorites-form-' + recipeId);
+                form.submit();
+            }
+        </script>
     </body>
 </html>
 @endsection
