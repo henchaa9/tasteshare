@@ -48,10 +48,16 @@ use App\Models\Upvotes;
                                 <button type="button" class="d-inline btn btn-danger ml-1.1">Dzēst</button>
                             @else
                             <div id="upvote-button-{{ $recepte->id }}" class="btn-group" data-toggle="buttons">
-                            <form id="favorites-form-{{ $recepte->id }}" action="{{ route('recipes.favorites.save', $recepte) }}" method="POST">
+                                <form id="favorites-form-{{ $recepte->id }}" action="{{ route('recipes.favorites.save', $recepte) }}" method="POST">
                                     {{ csrf_field() }}
                                     @method('PUT')
-                                    <button type="button" onclick="handleFavorite({{ $recepte->id }})" class="d-inline btn {{ $recepte->favoritedByUser() ? 'btn-warning' : 'btn-outline-warning' }}">Saglabāt</button>
+                                    <button type="button" onclick="handleFavorite({{ $recepte->id }})" class="d-inline btn {{ $recepte->favoritedByUser() ? 'btn-warning' : 'btn-outline-warning' }}">
+                                        @if ($recepte->favoritedByUser())
+                                            Saglabāta
+                                        @else
+                                            Saglabāt
+                                        @endif
+                                    </button>
                                 </form>
                                 <form id="upvote-form-{{ $recepte->id }}" action="{{ route('recipes.upvote', $recepte) }}" method="POST">
                                     {{ csrf_field() }}
@@ -101,7 +107,13 @@ use App\Models\Upvotes;
                                 <form id="favorites-form-{{ $recepte->id }}" action="{{ route('recipes.favorites.save', $recepte) }}" method="POST">
                                     {{ csrf_field() }}
                                     @method('PUT')
-                                    <button type="button" onclick="handleFavorite({{ $recepte->id }})" class="d-inline btn {{ $recepte->favoritedByUser() ? 'btn-warning' : 'btn-outline-warning' }}">Saglabāt</button>
+                                    <button type="button" onclick="handleFavorite({{ $recepte->id }})" class="d-inline btn {{ $recepte->favoritedByUser() ? 'btn-warning' : 'btn-outline-warning' }}">
+                                        @if ($recepte->favoritedByUser())
+                                            Saglabāta
+                                        @else
+                                            Saglabāt
+                                        @endif
+                                    </button>
                                 </form>
                                 <form id="upvote-form-{{ $recepte->id }}" action="{{ route('recipes.upvote', $recepte) }}" method="POST">
                                     {{ csrf_field() }}
