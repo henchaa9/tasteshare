@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers;
 use App\Models\Recipes;
-
-
+use App\Models\RecipeImages;
+use App\Models\Upvotes;
+use Illuminate\Support\Facades\Session;
+use App\Models\Favourites;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+
+
+    // atjaunot profilu
 
     public function edit()
     {
@@ -46,10 +51,16 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->back()->with('success', 'Profils veiksmīgi atjaunots.');
+
     }
 
-    public function destroy(Request $request)
-{
+
+// dzēst profilu
+
+
+
+public function destroy(Request $request)
+{   
     // Verify password and perform deletion
     $password = $request->input('password');
 
@@ -59,24 +70,99 @@ class UserController extends Controller
     }
 
     // Password is correct, proceed with deletion
-    // Delete the user's recipes
-    $user = $request->user();
-    $user->recipes()->delete();
+
+    // Delete the user's favorites
+    // Delete the user's favorites
+    $deletedFavorites = Favourites::where('userid', $request->user()->id)->get();
+    $deletedFavoritesCount = $deletedFavorites->count();
+
+    // Delete the favorites
+    Favourites::where('userid', $request->user()->id)->delete();
+
+    // Display a message with the number of deleted favorites
+    $message = 'Deleted ' . $deletedFavoritesCount . ' favorites.';
+    dump($message);
+
+    // Delete the user's upvotes
+    Upvotes::where('userid', $request->user()->id)->delete();
+
+    // Delete the user's recipes and associated images
+    $recipes = Recipes::where('userid', $request->user()->id)->get();
+
+    foreach ($recipes as $recipe) {
+        // Delete the associated pictures
+        $recipeImages = RecipeImages::where('recipeid', $recipe->id)->get();
+
+        foreach ($recipeImages as $image) {
+            $image->delete();
+        }
+
+        // Delete the recipe
+        $recipe->delete();
+    }
 
     // Delete the user account
-    $user->delete();
+    $request->user()->delete();
 
-    // Perform any additional actions (e.g., logging out the user)
+    // Flash a success message to the session
+    Session::flash('success', 'Jūsu konts ir veiksmīgi dzēsts.');
 
-    // Redirect the user to a confirmation page or any other desired location
-    return redirect()->route('account.deleted');
+    // Redirect the user to the main page
+    return redirect('/');
 }
 
 
+
+
+
+
+
+    // apstiprināt profila izdzēšanu
+
     public function confirmDelete()
-    {
+{
         return view('account-delete');
+}
+
+
+
+
+
+    
+    
+    
+    // dzēst recepti
+    
+
+public function delete($id)
+{
+    $recipe = Recipes::find($id);
+
+    if (!$recipe) {
+        return redirect()->back()->with('error', 'Recepte nav atrasta.');
     }
+
+    // Check if the authenticated user has permission to delete the recipe
+    if ($recipe->userid != Auth::id()) {
+        return redirect()->back()->with('error', 'Jums nav atļaujas dzēst šo recepti.');
+    }
+
+    // Delete the associated picture
+    $recipeImage = RecipeImages::where('recipeid', $id)->first();
+
+    if ($recipeImage) {
+        // Delete the recipe image
+        $recipeImage->delete();
+    }
+
+    // Delete the recipe
+    $recipe->delete();
+
+    return redirect()->back()->with('success', 'Recepte ir veiksmīgi dzēsta.');
+}
+
+
+
 
 
 }

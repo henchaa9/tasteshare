@@ -96,6 +96,7 @@ return [
 
         'stderr' => [
             'driver' => 'monolog',
+            'path' => storage_path('logs/laravel.log'),
             'level' => env('LOG_LEVEL', 'debug'),
             'handler' => StreamHandler::class,
             'formatter' => env('LOG_STDERR_FORMATTER'),
@@ -114,6 +115,7 @@ return [
 
         'errorlog' => [
             'driver' => 'errorlog',
+            'path' => storage_path('logs/laravel.log'),
             'level' => env('LOG_LEVEL', 'debug'),
             'replace_placeholders' => true,
         ],

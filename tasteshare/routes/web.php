@@ -71,6 +71,11 @@ Route::get('/profile/update', function () {
     return view('update-profile');
 })->name('profile.update-page');
 
+Route::get('/profile/delete', [UserController::class, 'confirmDelete'])->name('profile.confirmDelete');
+
+Route::post('/profile/delete', [UserController::class, 'destroy'])->name('profile.delete');
+
+
 
 // Upvote a post
 Route::post('/recipes/{recepte}/upvote', [UpvoteController::class, 'upvote'])->name('recipes.upvote');
@@ -78,9 +83,6 @@ Route::post('/recipes/{recepte}/upvote', [UpvoteController::class, 'upvote'])->n
 // Remove upvote from a post
 Route::delete('/recipes/{recepte}/upvote', [UpvoteController::class, 'upvote'])->name('recipes.upvote');
 
-Route::get('/profile/delete', [UserController::class, 'confirmDelete'])->name('profile.confirmDelete');
-
-Route::post('/profile/delete', [UserController::class, 'destroy'])->name('profile.delete');
 
 
 

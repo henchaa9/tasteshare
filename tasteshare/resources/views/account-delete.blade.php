@@ -16,8 +16,13 @@
             return false;
         }
 
-        // If the passwords match, submit the form
-        document.getElementById('delete-form').submit();
+        // Show a confirmation dialog
+        var result = confirm('Vai tiešām vēlaties dzēst profilu un visus saistītos datus? Šis process ir neatgriezenisks.');
+
+        if (result) {
+            // If the user confirms, submit the form
+            document.getElementById('delete-form').submit();
+        }
     }
 </script>
 <div class="container">
