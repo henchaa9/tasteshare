@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Recipes;
 use App\Models\RecipeImages;
+
 
 class RecepteController extends Controller
 {
@@ -98,11 +99,17 @@ class RecepteController extends Controller
             return redirect()->back()->with('error', 'Jums nav atļaujas dzēst šo recepti.');
         }
     
+        // Delete the associated picture
+        $recipeImage = RecipeImages::where('recipeid', $id)->first();
+    
+        if ($recipeImage) {
+            // Delete the recipe image
+            $recipeImage->delete();
+        }
         // Delete the recipe
         $recipe->delete();
     
         return redirect()->back()->with('success', 'Recepte ir veiksmīgi dzēsta.');
     }
-    
     
 }

@@ -22,9 +22,13 @@ return new class extends Migration
             $table->text('instructions');
             $table->boolean('ispublic');
             $table->foreign('userid')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('recipeid')->references('id')->on('recipes')->onDelete('cascade');
             $table->timestamps();
         });
     }
+
+    // Add onDelete('cascade') to the foreign key constraint
+
 
     /**
      * Reverse the migrations.

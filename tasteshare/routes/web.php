@@ -34,7 +34,7 @@ Route::put('/redigetReceptiRoute/{id}', [RecepteController::class, 'redigetRecep
 
 Route::get('/recepte/{id}', [RecepteController::class, 'raditrecepti'])->name('recepte');
 
-Route::delete('/manasreceptes/delete/{id}', 'RecepteController@delete')->name('recepte.delete');
+Route::delete('/manasreceptes/delete/{id}', [RecepteController::class,'delete'])->name('delete');
 
 
 

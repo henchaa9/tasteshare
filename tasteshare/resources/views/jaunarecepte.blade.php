@@ -37,7 +37,7 @@
             <label class="d-block font-weight-bolder" for="foto" style="font-size:1.1rem">Saite uz attēlu</label>
             <input class="mb-4 p-1 d-block w-50" type="url" name="foto" id="">
 
-            <label class="d-block font-weight-bolder" for="ispublic" style="font-size:1.1rem">Privāts/Publisks ieraksts</label>
+            <label class="d-block font-weight-bolder" for="ispublic" style="font-size:1.1rem">Privāta/Publiska recepte</label>
             <div class="custom-control custom-switch">
             <input type="checkbox" class="custom-control-input" id="ispublic" name="ispublic" checked>
             <label class="custom-control-label" for="ispublic"></label>
