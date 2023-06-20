@@ -16,8 +16,11 @@ class RecepteController extends Controller
 
     public function manasreceptes()
     {
-        return view('manasreceptes', ['receptes' => Recipes::all()]);
+        $userId = Auth::id();
+        $receptes = Recipes::where('userid', $userId)->get();
+        return view('manasreceptes', ['receptes' => $receptes]);
     }
+    
 
     public function raditrecepti($id)
     {

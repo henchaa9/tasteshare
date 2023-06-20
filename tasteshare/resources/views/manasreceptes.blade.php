@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+<div class="container">
         <h2>Manas receptes</h2>
         @if (count($receptes) > 0)
             <div class="row">
@@ -49,4 +49,3 @@
         @endif
     </div>
 @endsection
-
