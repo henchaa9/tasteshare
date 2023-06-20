@@ -8,7 +8,7 @@
         <!-- Add more user profile information here -->
 
         <a href="{{ route('profile.edit') }}" class="btn btn-warning">Atjaunināt profilu</a>
-        <a href="{{ route('profile.confirmDelete') }}" class="btn btn-danger">Dzēst kontu</a>
+        <!--<a href="{{ route('profile.confirmDelete') }}" class="btn btn-danger">Dzēst kontu</a>-->
     </div>
 
     <div class="container mt-5">
