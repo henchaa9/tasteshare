@@ -134,6 +134,17 @@ use App\Models\Upvotes;
         </div>
     </div>
 </div>
+<script>
+    function handleUpvote(recipeId) {
+        var form = document.getElementById('upvote-form-' + recipeId);
+        form.submit();
+    }
+
+    function handleFavorite(recipeId) {
+        var form = document.getElementById('favorites-form-' + recipeId);
+        form.submit();
+    }
+</script>
 </body>
 </html>
 @endsection
