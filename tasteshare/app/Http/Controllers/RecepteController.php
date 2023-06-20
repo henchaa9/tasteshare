@@ -27,7 +27,8 @@ class RecepteController extends Controller
 
     public function raditrecepti($id)
     {
-        return view('recepte', ['receptes' => Recipes::find($id)]);
+        $upvotes_count = Recipes::withCount('upvotes')->get();
+        return view('recepte', ['receptes' => Recipes::find($id), 'upvotes_count' => $upvotes_count]);
     }
 
     public function redigetview($id)

@@ -5,6 +5,7 @@
 use App\Models\Users;
 use App\Models\RecipeImages;
 use App\Models\Recipes;
+use App\Models\Upvotes;
 ?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
