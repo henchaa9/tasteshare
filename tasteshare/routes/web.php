@@ -40,7 +40,6 @@ Route::delete('/manasreceptes/delete/{id}', [RecepteController::class,'delete'])
 
 
 
-
 /*Autorizācija*/
 
 Route::get('/ielogoties', function () {
@@ -77,8 +76,17 @@ Route::post('/profile/delete', [UserController::class, 'destroy'])->name('profil
 
 
 
+
+
+/*Publisks profils*/
+
+Route::get('/users/{name}', [UserController::class, 'publicProfile'])->name('public-profile');
+
+
+
 // Upvote a post
 Route::post('/recipes/{recepte}/upvote', [UpvoteController::class, 'upvote'])->name('recipes.upvote');
+
 
 // Remove upvote from a post
 Route::delete('/recipes/{recepte}/upvote', [UpvoteController::class, 'upvote'])->name('recipes.upvote');

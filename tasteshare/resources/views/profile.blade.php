@@ -8,7 +8,7 @@
         <!-- Add more user profile information here -->
 
         <a href="{{ route('profile.edit') }}" class="btn btn-warning">Atjaunināt profilu</a>
-        <a href="{{ route('profile.confirmDelete') }}" class="btn btn-danger">Dzēst profilu</a>
+        <a href="{{ route('profile.confirmDelete') }}" class="btn btn-danger">Dzēst kontu</a>
     </div>
 
     <div class="container mt-5">
@@ -33,7 +33,6 @@
                                     <h4 class="card-title mb-1">
                                         <a href="{{ route('recepte', ['id' => $recepte->id]) }}" class="text-dark">{{ $recepte->title }}</a>
                                     </h4>
-                                    <h6 class="card-title">Autors: {{ $userName }}</h6>
                                     <p class="card-text" style="max-height: 200px; overflow: hidden">{{ $recepte->desc }}</p>
                                     <p class="card-text">Sagatavošanas laiks: {{ $recepte->preptime }} minūtes</p>
                                     <p class="card-text">Gatavošanas laiks: {{ $recepte->cooktime }} minūtes</p>

@@ -1,14 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Recipes;
 use App\Models\RecipeImages;
 use App\Models\Upvotes;
 use Illuminate\Support\Facades\Session;
+use App\Models\User;
 use App\Models\Favourites;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\UserController;
+use Illuminate\Database\Eloquent\Model;
 
 class UserController extends Controller
 {
@@ -125,11 +129,6 @@ public function destroy(Request $request)
 }
 
 
-
-
-
-    
-    
     
     // dzēst recepti
     
@@ -161,6 +160,41 @@ public function delete($id)
     return redirect()->back()->with('success', 'Recepte ir veiksmīgi dzēsta.');
 }
 
+
+
+// Publiska user profila recepšu saņemšanai
+
+public function publicProfile($name)
+{
+    $user = User::where('name', $name)->first();
+
+    if ($user) {
+        $recipes = $user->recipes()
+            ->where('ispublic', true)
+            ->get();
+
+        return view('public-profile', compact('user', 'recipes'));
+    } else {
+        abort(404); // User not found
+    }
+}
+
+
+
+
+
+
+public function profileRecipe()
+{
+    $user = Auth::user();
+    $recipes = Recipes::where('id', $user->id)->get();
+
+    if ($recipes === null || $recipes->isEmpty()) {
+        $recipes = collect(); // Create an empty collection if $receptes is null or empty
+    }
+
+    return view('profile', compact('user', 'receptes'));
+}
 
 
 
