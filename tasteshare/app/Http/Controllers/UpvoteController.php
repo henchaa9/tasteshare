@@ -5,6 +5,7 @@ use App\Models\Users;
 use App\Models\RecipeImages;
 use App\Models\Recipes;
 use App\Models\Upvote;
+use Redirect;
 
 use Illuminate\Http\Request;
 
@@ -37,7 +38,7 @@ class UpvoteController extends Controller
             }
         }
     
-        return redirect('/');
+        return Redirect::back();
     }
     
 

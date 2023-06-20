@@ -10,10 +10,10 @@ use App\Models\RecipeImages;
 class RecepteController extends Controller
 {
     public function index()
-{
-    $receptes = Recipes::withCount('upvotes')->get();
-    return view('welcome', compact('receptes'));
-}
+    {
+        $receptes = Recipes::withCount('upvotes')->get();
+        return view('welcome', compact('receptes'));
+    }
 
 
     public function manasreceptes()

@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecepteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UpvoteController;
+use App\Http\Controllers\FavoritesController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -90,6 +92,13 @@ Route::post('/recipes/{recepte}/upvote', [UpvoteController::class, 'upvote'])->n
 
 // Remove upvote from a post
 Route::delete('/recipes/{recepte}/upvote', [UpvoteController::class, 'upvote'])->name('recipes.upvote');
+
+
+
+Route::get('/favorites', [FavoritesController::class, 'index'])->name('favorites');
+
+Route::put('recipes/{recepte}/favorites/save', [FavoritesController::class, 'save'])->name('recipes.favorites.save');
+
 
 
 

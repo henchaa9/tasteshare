@@ -25,4 +25,14 @@ class Recipes extends Model
     {
         return $this->hasMany(Upvote::class, 'recipeid');
     }
+
+    public function favorites()
+    {
+        return $this->belongsToMany(User::class, 'favorites', 'recipeid', 'userid');
+    }
+
+    public function favoritedByUser()
+    {
+        return $this->favorites()->where('userid', auth()->id())->exists();
+    }
 }
