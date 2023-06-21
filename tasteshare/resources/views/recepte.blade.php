@@ -1,12 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<?php
-use App\Models\Users;
-use App\Models\RecipeImages;
-use App\Models\Recipes;
-use App\Models\Upvotes;
-?>
+    <?php
+    use App\Models\Users;
+    use App\Models\RecipeImages;
+    use App\Models\Recipes;
+    use App\Models\Upvotes;
+    
+    ?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -26,6 +27,12 @@ use App\Models\Upvotes;
         </style>
     </head>
     <body>
+        
+    @if (!$receptes)
+        <script>
+            window.location.href = "{{ url('/manasreceptes') }}";
+        </script>
+    @else
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -103,7 +110,7 @@ use App\Models\Upvotes;
                 @endif
             </div>
         </div>
-        
+        @endif        
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
         <script>
@@ -117,6 +124,37 @@ use App\Models\Upvotes;
                 form.submit();
             }
         </script>
+
+<script>
+        document.getElementById('delete-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            if (confirm('Vai esat pārliecināts, ka vēlaties dzēst šo recepti?')) {
+                var form = this;
+                fetch(form.action, {
+                    method: form.method,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': form.querySelector('input[name="_token"]').value
+                    }
+                })
+                .then(function(response) {
+                    // Check if the response indicates successful deletion
+                    if (response.ok) {
+                        // Redirect to the desired page
+                        window.location.href = '/manasreceptes';
+                    } else {
+                        // Handle error case
+                        // ...
+                    }
+                })
+                .catch(function(error) {
+                    // Handle error case
+                    // ...
+                });
+            }
+        });
+    </script>
     </body>
 </html>
 @endsection

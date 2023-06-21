@@ -63,7 +63,7 @@ class RecepteController extends Controller
         $newPhoto->imageurl = $imageUrl;
         $newPhoto->save();
     
-        return redirect('');
+        return redirect('/manasreceptes');
     }
     
     public function redigetRecepti($id, Request $request)
@@ -125,7 +125,7 @@ class RecepteController extends Controller
         }
         // Delete the recipe
         $recipe->delete();
-    
+        
         return redirect()->back()->with('success', 'Recepte ir veiksmīgi dzēsta.');
     }
     
