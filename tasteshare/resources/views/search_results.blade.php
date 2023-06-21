@@ -29,6 +29,43 @@
                                 <p class="card-text">Gatavošanas laiks: {{ $result->cooktime }} minūtes</p>
                                 <p class="card-text">Porciju skaits: {{ $result->servings }}</p>
                                 <!-- Additional recipe details here -->
+                                @if (Auth::check())
+                                    @if ($result->userid == Auth::id())
+                                    <div class="btn-group">
+                                        <a type="button" class="d-inline btn btn-warning" href="rediget/{{ $result->id }}">Rediģēt</a>
+                                        <form method="POST" action="{{ route('delete', ['id' => $result->id]) }}" onsubmit="return confirm('Vai esat pārliecināts, ka vēlaties dzēst šo recepti?')">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger ml-2">Dzēst</button>
+                                        </form>
+                                    </div>
+                                    @else
+                                    <div id="upvote-button-{{ $result->id }}" class="btn-group" data-toggle="buttons">
+
+                                        <form id="favorites-form-{{ $result->id }}" action="{{ route('recipes.favorites.save', $result) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            @method('PUT')
+                                            <button type="button" onclick="handleFavorite({{ $result->id }})" class="d-inline btn {{ $result->favoritedByUser() ? 'btn-warning' : 'btn-outline-warning' }}">
+                                                @if ($result->favoritedByUser())
+                                                    Saglabāta
+                                                @else
+                                                    Saglabāt
+                                                @endif
+                                            </button>
+                                        </form>
+                                        <form id="upvote-form-{{ $result->id }}" action="{{ route('recipes.upvote', $result) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            @if ($result->isUpvotedByUser())
+                                                @method('DELETE')
+                                            @endif
+                                            <button type="button" onclick="handleUpvote({{ $result->id }})" class="d-inline btn ml-1 {{ $result->isUpvotedByUser() ? 'btn-danger' : 'btn-outline-danger' }}">Patīk {{ $result->upvotes_count }}</button>
+                                        </form>
+                                    </div>
+                                    @endif
+                                @else
+                                    <a type="button" class="d-inline btn btn-outline-danger" href="login">Patīk</a>
+                                    <a type="button" class="d-inline btn btn-outline-danger ml-1" href="login">Saglabāt</a>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -36,5 +73,16 @@
             </div>
         @endif
     </div>
+<script>
+    function handleUpvote(recipeId) {
+        var form = document.getElementById('upvote-form-' + recipeId);
+        form.submit();
+    }
+
+    function handleFavorite(recipeId) {
+        var form = document.getElementById('favorites-form-' + recipeId);
+        form.submit();
+    }
+</script>
 @endsection
 

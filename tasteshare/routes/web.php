@@ -57,7 +57,9 @@ Auth::routes();
 
 /*Meklēšana*/
 
-Route::post('/search', [RecepteController::class, 'search'])->name('search');
+// Route::post('/search', [RecepteController::class, 'search'])->name('search');
+Route::match(['get', 'post'], '/search', [RecepteController::class, 'search'])->name('search');
+
 
 
 /*Profils*/

@@ -89,19 +89,50 @@ class RecepteController extends Controller
         return redirect('/');
     }
     
+    // public function search(Request $request)
+    // {
+    //     $query = $request->input('query');
+    //     $results = Recipes::where('title', 'like', "%$query%")
+    //                      ->orWhere('desc', 'like', "%$query%")
+    //                      ->orWhere('instructions', 'like', "%$query%")
+    //                      ->with('user') // Load the user information for each recipe
+    //                      ->get();
+    
+    //     $imageUrls = RecipeImages::whereIn('recipeid', $results->pluck('id'))->pluck('imageurl', 'recipeid');
+    
+    //     // return view('search_results', compact('results', 'query', 'imageUrls'));
+
+    //     $upvotes_count = Recipes::withCount('upvotes')->get();
+
+    //     return view('search_results', [
+    //         'results' => $results,
+    //         'query' => $query,
+    //         'imageUrls' => $imageUrls,
+    //         'upvotes_count' => $upvotes_count
+    //     ]);
+
+    // }
     public function search(Request $request)
-    {
-        $query = $request->input('query');
-        $results = Recipes::where('title', 'like', "%$query%")
-                         ->orWhere('desc', 'like', "%$query%")
-                         ->orWhere('instructions', 'like', "%$query%")
-                         ->with('user') // Load the user information for each recipe
-                         ->get();
+{
+    $query = $request->input('query');
     
-        $imageUrls = RecipeImages::whereIn('recipeid', $results->pluck('id'))->pluck('imageurl', 'recipeid');
+    $results = Recipes::where('title', 'like', "%$query%")
+                     ->orWhere('desc', 'like', "%$query%")
+                     ->orWhere('instructions', 'like', "%$query%")
+                     ->with('user') // Load the user information for each recipe
+                     ->get();
     
-        return view('search_results', compact('results', 'query', 'imageUrls'));
-    }
+    $imageUrls = RecipeImages::whereIn('recipeid', $results->pluck('id'))->pluck('imageurl', 'recipeid');
+    
+    $upvotes_count = $results->loadCount('upvotes');
+    
+    return view('search_results', [
+        'results' => $results,
+        'query' => $query,
+        'imageUrls' => $imageUrls,
+        'upvotes_count' => $upvotes_count
+    ]);
+}
     
     public function delete($id)
     {
