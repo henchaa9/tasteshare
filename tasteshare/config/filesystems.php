@@ -56,8 +56,20 @@ return [
             'throw' => false,
         ],
 
+
+        'extensions' => [
+
+            'media-manager' => [
+    
+                // Select a local disk that you configured in `config/filesystem.php`
+                'disk' => 'public',
+                'allowed_ext' => 'jpg,jpeg,png,pdf,doc,docx,zip'
+            ],
+        ],
     ],
 
+
+    
     /*
     |--------------------------------------------------------------------------
     | Symbolic Links
