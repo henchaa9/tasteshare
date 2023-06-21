@@ -44,8 +44,14 @@ use App\Models\Upvotes;
                         <p class="card-text">Porciju skaits: {{ $recepte->servings }}</p>
                         @if (Auth::check())
                             @if ($recepte->userid == Auth::id())
-                                <a type="button" class="d-inline btn btn-warning" href="rediget/{{ $recepte->id }}">Rediģēt</a>
-                                <button type="button" class="d-inline btn btn-danger ml-1.1">Dzēst</button>
+                                <div class="btn-group">
+                                    <a type="button" class="d-inline btn btn-warning" href="rediget/{{ $recepte->id }}">Rediģēt</a>
+                                    <form method="POST" action="{{ route('delete', ['id' => $recepte->id]) }}" onsubmit="return confirm('Vai esat pārliecināts, ka vēlaties dzēst šo recepti?')">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger ml-2">Dzēst</button>
+                                    </form>
+                                </div>
                             @else
                             <div id="upvote-button-{{ $recepte->id }}" class="btn-group" data-toggle="buttons">
                                 <form id="favorites-form-{{ $recepte->id }}" action="{{ route('recipes.favorites.save', $recepte) }}" method="POST">
@@ -99,8 +105,14 @@ use App\Models\Upvotes;
                         <p class="card-text">Porciju skaits: {{ $recepte->servings }}</p>
                         @if (Auth::check())
                             @if ($recepte->userid == Auth::id())
+                            <div class="btn-group">
                                 <a type="button" class="d-inline btn btn-warning" href="rediget/{{ $recepte->id }}">Rediģēt</a>
-                                <button type="button" class="d-inline btn btn-danger ml-1.1">Dzēst</button>
+                                <form method="POST" action="{{ route('delete', ['id' => $recepte->id]) }}" onsubmit="return confirm('Vai esat pārliecināts, ka vēlaties dzēst šo recepti?')">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-danger ml-2">Dzēst</button>
+                                </form>
+                            </div>
                             @else
                             <div id="upvote-button-{{ $recepte->id }}" class="btn-group" data-toggle="buttons">
 
