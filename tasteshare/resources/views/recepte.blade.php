@@ -66,8 +66,13 @@ use App\Models\Upvotes;
             <div class="row" style="max-width: 100px">
                 @if (Auth::check())
                     @if ($receptes->userid == Auth::id())
-                        <a type="button" class="d-inline btn btn-warning" href="rediget/{{ $receptes->id }}">Rediģēt</a>
-                        <button type="button" class="d-inline btn btn-danger ml-1.1">Dzēst</button>
+                    <div class="btn-group" data-toggle="buttons">
+                        <a type="button" class="d-inline btn btn-warning rounded-right" href="../rediget/{{ $receptes->id }}">Rediģēt</a>
+                        <form method="POST" action="{{ route('delete', ['id' => $receptes->id]) }}" onsubmit="return confirm('Vai esat pārliecināts, ka vēlaties dzēst šo recepti?')">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger ml-2">Dzēst</button>
+                    </div>
                     @else
                     <div id="upvote-button-{{ $receptes->id }}" class="btn-group" data-toggle="buttons">
                         <form id="favorites-form-{{ $receptes->id }}" action="{{ route('recipes.favorites.save', $receptes) }}" method="POST">
@@ -86,13 +91,15 @@ use App\Models\Upvotes;
                             @if ($receptes->isUpvotedByUser())
                                 @method('DELETE')
                             @endif
-                            <button type="button" onclick="handleUpvote({{ $receptes->id }})" class="d-inline btn ml-1 {{ $receptes->isUpvotedByUser() ? 'btn-danger' : 'btn-outline-danger' }}">Patīk: {{ $receptes->upvotes_count }}</button>
+                            <button type="button" onclick="handleUpvote({{ $receptes->id }})" class="d-inline btn ml-1 {{ $receptes->isUpvotedByUser() ? 'btn-danger' : 'btn-outline-danger' }}">Patīk {{ $receptes->upvotes_count }}</button>
                         </form>
                     </div>
                     @endif
                 @else
-                    <a type="button" class="d-inline btn btn-outline-danger" href="login">Patīk</a>
-                    <a type="button" class="d-inline btn btn-outline-danger ml-1" href="login">Saglabāt</a>
+                    <div  class="btn-group">
+                    <a type="button" class="d-inline btn btn-outline-danger" href="/login">Patīk</a>
+                    <a type="button" class="d-inline btn btn-outline-danger ml-1" href="/login">Saglabāt</a>
+                    </div>
                 @endif
             </div>
         </div>
