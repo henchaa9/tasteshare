@@ -70,7 +70,7 @@
                     <p class="text-justify" style="font-size: 1.2rem">{{ $receptes->instructions }}</p>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="max-width: 100px">
                 @if (Auth::check())
                     @if ($receptes->userid == Auth::id())
                     <div class="btn-group" data-toggle="buttons">
@@ -98,7 +98,7 @@
                             @if ($receptes->isUpvotedByUser())
                                 @method('DELETE')
                             @endif
-                            <button type="button" onclick="handleUpvote({{ $receptes->id }})" class="d-inline btn ml-1 {{ $receptes->isUpvotedByUser() ? 'btn-danger' : 'btn-outline-danger' }}">Patīk: {{ $upvotes_count->upvotes_count() }}</button>
+                            <button type="button" onclick="handleUpvote({{ $receptes->id }})" class="d-inline btn ml-1 {{ $receptes->isUpvotedByUser() ? 'btn-danger' : 'btn-outline-danger' }}">Patīk {{ $receptes->upvotes_count }}</button>
                         </form>
                     </div>
                     @endif
@@ -158,4 +158,3 @@
     </body>
 </html>
 @endsection
-
