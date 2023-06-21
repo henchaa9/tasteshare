@@ -163,6 +163,21 @@ public function delete($id)
 
 // Publiska user profila recepšu saņemšanai
 
+// public function publicProfile($name)
+// {
+//     $user = User::where('name', $name)->first();
+
+//     if ($user) {
+//         $recipes = $user->recipes()
+//             ->where('ispublic', true)
+//             ->get();
+
+//         return view('public-profile', compact('user', 'recipes'));
+//     } else {
+//         abort(404); // User not found
+//     }
+//     $upvotes_count = $results->loadCount('upvotes');
+// }
 public function publicProfile($name)
 {
     $user = User::where('name', $name)->first();
@@ -171,12 +186,15 @@ public function publicProfile($name)
         $recipes = $user->recipes()
             ->where('ispublic', true)
             ->get();
+        
+        $upvotes_count = $recipes->loadCount('upvotes');
 
-        return view('public-profile', compact('user', 'recipes'));
+        return view('public-profile', compact('user', 'recipes', 'upvotes_count'));
     } else {
         abort(404); // User not found
     }
 }
+
 
 
 
